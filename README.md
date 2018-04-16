@@ -12,10 +12,16 @@ Please install following modules & tools :
 
 ### Others distribution
 A graphical user interface developped in Qt is available as a [Windows portable version](http://163.172.45.124/uploads/eKLIPse_beta-0-2_winPortable.zip).
+
 GUI documentation and tutorial are also included.
 
 
+
+
 ### Running eKLIPse
+
+
+
 
 
 ### Contact
@@ -23,7 +29,7 @@ David Goudenège: dooguy (AT) tuta.io
 
 
 ### License
-Opossum is available under the GNU Affero General Public License v3.0.
+eKLIPse is available under the GNU Affero General Public License v3.0.
 
 Please cite: .......
 

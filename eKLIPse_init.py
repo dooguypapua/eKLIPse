@@ -222,7 +222,7 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
 
 def manual_display(lst_error,dicoInit,spinner):
     if dicoInit['boolQT']==False: spinner.stop()
-    printcolor("\n\n  USAGE: python eKLIPse_v1-7.py -in <FILE with Alignment paths> -ref <GBK reference> [OPTIONS]\n\n","bold yellow",dicoInit['boolColor'])
+    printcolor("\n\n  USAGE: python eKLIPse -in <FILE with Alignment paths> -ref <GBK reference> [OPTIONS]\n\n","bold yellow",dicoInit['boolColor'])
     printcolor("  OPTIONS:\n","bold white",dicoInit['boolColor'])
     printcolor("    -out         <str>   : Output directory            [current]\n","white",dicoInit['boolColor'])
     printcolor("    -tmp         <str>   : Temporary directory         [/tmp]\n","white",dicoInit['boolColor'])

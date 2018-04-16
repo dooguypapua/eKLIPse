@@ -1,13 +1,16 @@
-![Image of Yaktocat](http://163.172.45.124/uploads/eklipse.png)
+## ![Image of Yaktocat](http://163.172.45.124/uploads/eklipse.png)
 
 
-## Welcome to GitHub Pages
+### Dependencies
+Please install following python modules:
+- [biopython](https://github.com/biopython/biopython)
+- [tqdm](https://github.com/tqdm/tqdm)
 
-You can use the [editor on GitHub](https://github.com/dooguypapua/eKLIPse/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+eKLIPse required following tools in your $PATH or as main script argument:
+- [samtools](https://github.com/samtools/samtools)
+- [blast](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
+- [circos](http://circos.ca/software/download/)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 

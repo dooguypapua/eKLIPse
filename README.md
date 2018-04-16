@@ -20,12 +20,34 @@ GUI documentation and tutorial are also included.
 
 ### Running eKLIPse
 
+python eKLIPse.py -in <FILE with Alignment paths> -ref <GBK reference> [OPTIONS]
+
+  OPTIONS:
+    -out         <str>   : Output directory            [current]
+    -tmp         <str>   : Temporary directory         [/tmp]
+    -scsize      <int>   : Soft-clipping min length    [25]
+    -mapsize     <int>   : Mapped read to blast length [20]
+    -downcov     <int>   : Downsampling reads number   [500000] (0=disable)
+    -minq        <int>   : Read quality threshold      [20]
+    -shift       <int>   : Deletion position shift     [5]
+    -minMitoSize <int>   : Minimal deleted mito size   [1000]
+    -id          <int>   : BLAST %identity threshold   [80]
+    -cov         <int>   : BLAST %coverage threshold   [70]
+    -gapopen     <int>   : BLAST Cost to open a gap    [0:proton, 5:illumina]
+    -gapext      <int>   : BLAST Cost to extend a gap  [2]
+    -thread      <int>   : Number of thread to use     [2]
+    -samtools    <str>   : samtools bin path           [PATH]
+    -blastn      <str>   : blastn bin path             [PATH]
+    -makeblastdb <str>   : makeblastdb bin path        [PATH]
+    -circos      <str>   : circos bin path             [PATH]
+    --nocolor            : Disable output colors
+
 
 
 
 
 ### Contact
-David Goudenège: dooguy (AT) tuta.io
+dooguy@tuta.io
 
 
 ### License

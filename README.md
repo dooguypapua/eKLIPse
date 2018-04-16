@@ -1,3 +1,6 @@
+![Image of Yaktocat](http://163.172.45.124/uploads/eklipse.png)
+
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/dooguypapua/eKLIPse/edit/master/README.md) to maintain and preview the content for your website in Markdown files.

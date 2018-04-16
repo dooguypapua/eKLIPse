@@ -1,6 +1,16 @@
 ## ![Image of Yaktocat](http://163.172.45.124/uploads/eklipse.png)
 
 
+## Graphical User Interface (Windows Portable Version)
+
+A graphical user interface developped in Qt is available [here](http://163.172.45.124/uploads/eKLIPse_beta-0-2_winPortable.zip).
+
+GUI documentation and tutorial are also included.
+
+
+
+## CLI (Linux)
+
 ### Requirements
 Please install following modules & tools :
 - [biopython](https://github.com/biopython/biopython)
@@ -10,18 +20,23 @@ Please install following modules & tools :
 - [circos](http://circos.ca/software/download/)
 
 
-### Others distribution
-A graphical user interface developped in Qt is available as a [Windows portable version](http://163.172.45.124/uploads/eKLIPse_beta-0-2_winPortable.zip).
+### Testing eKLIPse
 
-GUI documentation and tutorial are also included.
+#### 1 - Create the required input file.
+The input file is a simple tabulated text file like :
+path_bam1	title1
+path_bam2	title2
+
+Two simulated test BAM alignments are available in "/data".
+In a editor create teh follow
 
 
+#### 2 - eKLIPse allow any mtDNA reference genome given with "-ref" parameters
 
 
-### Running eKLIPse
 
 ```markdown
-python eKLIPse.py -in <FILE with Alignment paths> -ref <GBK reference> [OPTIONS]
+python eKLIPse.py -in <INPUT file path> -ref <GBK file path> [OPTIONS]
 
   OPTIONS:
     -out         <str>   : Output directory            [current]

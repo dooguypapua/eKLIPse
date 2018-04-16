@@ -40,8 +40,8 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
 
     #***** Check Required Arguments *****#
     if len(argv)==1 or argv[1]=="-h" or argv[1]=="--help": manual_display([],dicoInit,spinner)
-    if not "-in" in argv: manual_display(["Missing required \"-in\" argument"],dicoInit,spinner)
-    if not "-ref" in argv: manual_display(["Missing required \"-ref\" argument"],dicoInit,spinner)
+    if not "-in" in argv and not "--test" in argv: manual_display(["Missing required \"-in\" argument"],dicoInit,spinner)
+    if not "-ref" in argv and not "--test" in argv: manual_display(["Missing required \"-ref\" argument"],dicoInit,spinner)
     # Executables path (local for Windows  / $PATH or arguments for linux)
     path_exe_src = os.path.join(os.path.dirname(os.path.realpath(__file__)),"src")
     if os.path.isdir(path_exe_src):
@@ -93,6 +93,22 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
                             else: geneType = "protein"
                             dicoInit["dicoGbk"]['lstGene'].append([feature.qualifiers['gene'][0],int(feature.location.start)+1,int(feature.location.end),geneType])
             if len(dicoInit["dicoGbk"])==0: lstErrorDisplay.append("Cannot Read Reference GBK file \""+argv[i+1]+"\"")
+        elif argv[i]=="--test":
+            dicoInit['lstTitleBam'] = ["test_Illumina","test_proton"]
+            dicoInit["dicoBam"] = {"test_Illumina":{'path':dicoInit["pathDataDir"]+"/test_illumina.bam", 'refName':"", 'nbReads':0, 'path_downsampling':""},"test_proton":{'path':dicoInit["pathDataDir"]+"/test_proton.bam", 'refName':"", 'nbReads':0, 'path_downsampling':""}}
+            dicoInit['pathGbkRef'] = dicoInit["pathDataDir"]+"/NC_012920.1.gb"
+            for gb_record in SeqIO.parse(open(dicoInit['pathGbkRef'],"r"), "genbank") :
+                dicoInit["dicoGbk"]['refName'] = gb_record.name
+                dicoInit["dicoGbk"]['refDescr'] = gb_record.description
+                dicoInit["dicoGbk"]['refSeq'] = str(gb_record.seq)
+                dicoInit["dicoGbk"]['refLength'] = len(gb_record.seq)
+                dicoInit["dicoGbk"]['lstGene'] = []
+                for feature in gb_record.features:
+                    if feature.type=="gene":
+                        if feature.qualifiers['nomenclature'][0].lower().__contains__("trna"): geneType = "trna"
+                        elif feature.qualifiers['nomenclature'][0].lower().__contains__("rna"): geneType = "rrna"
+                        else: geneType = "protein"
+                        dicoInit["dicoGbk"]['lstGene'].append([feature.qualifiers['gene'][0],int(feature.location.start)+1,int(feature.location.end),geneType])
         # Results Directory
         elif argv[i]=="-out":
             if boolQT==True: dicoInit['pathOutputDir'] = argv[i+1] # uuid already done
@@ -154,7 +170,7 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
             else: dicoInit['pathCircosBin'] = argv[i+1]
         elif argv[i]=="-samtools":
             if not os.path.isfile(argv[i+1]): lstErrorDisplay.append("\"-samtools\" binary not found")
-            else: dicoInit['pathSamtools'] = argv[i+1]            
+            else: dicoInit['pathSamtools'] = argv[i+1]
         elif argv[i]!="--qtgui" and argv[i]!="--nocolor": lstErrorDisplay.append("\""+argv[i]+"\" unrecognized parameters")
 
     #***** CHECK GAP OPEN & EXTEND *****#
@@ -241,6 +257,7 @@ def manual_display(lst_error,dicoInit,spinner):
     printcolor("    -blastn      <str>   : blastn bin path             [PATH]\n","white",dicoInit['boolColor'])
     printcolor("    -makeblastdb <str>   : makeblastdb bin path        [PATH]\n","white",dicoInit['boolColor'])    
     printcolor("    -circos      <str>   : circos bin path             [PATH]\n","white",dicoInit['boolColor'])
+    printcolor("    --test               : eKLIPse test\n","white",dicoInit['boolColor'])
     printcolor("    --nocolor            : Disable output colors\n","white",dicoInit['boolColor'])
     printerror(lst_error)
     try: shutil.rmtree(dicoInit['pathOutputDir']) ; shutil.rmtree(dicoInit['pathTmpDir'])

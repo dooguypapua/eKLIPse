@@ -36,9 +36,9 @@ python eKLIPse.py -in <INPUT file path> -ref <GBK file path> [OPTIONS]
 #### Required arguments
 
 ##### 1 - INPUT
-The input file is a simple tabulated text file like :
+The input file is a simple tabulated text file like:
 
-path_bam1<tab>title1
+path_bam1 "<tab>" title1
 
 path_bam2<tab>title2
 

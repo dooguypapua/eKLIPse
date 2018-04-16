@@ -21,26 +21,6 @@ GUI documentation and tutorial are also included.
 ### Running eKLIPse
 
 ```markdown
- +Syntax highlighted code block
- +
- +# Header 1
- +## Header 2
- +### Header 3
- +
- +- Bulleted
- +- List
- +
- +1. Numbered
- +2. List
- +
- +**Bold** and _Italic_ and `Code` text
- +
- +[Link](url) and ![Image](src)
- +```
- +
- +For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-
 python eKLIPse.py -in <FILE with Alignment paths> -ref <GBK reference> [OPTIONS]
 
   OPTIONS:
@@ -62,6 +42,9 @@ python eKLIPse.py -in <FILE with Alignment paths> -ref <GBK reference> [OPTIONS]
     -makeblastdb <str>   : makeblastdb bin path        [PATH]
     -circos      <str>   : circos bin path             [PATH]
     --nocolor            : Disable output colors
+```
+
+
 
 
 

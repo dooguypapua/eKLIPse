@@ -38,9 +38,9 @@ python eKLIPse.py -in <INPUT file path> -ref <GBK file path> [OPTIONS]
 ##### 1 - INPUT
 The input file is a simple tabulated text file like :
 
-path_bam1	title1
+path_bam1<tab>title1
 
-path_bam2	title2
+path_bam2<tab>title2
 
 
 ##### 2 - REFERENCE
@@ -56,6 +56,7 @@ Mus musculus (NC_005089.1.gb)
 
 
 #### Optionnal arguments
+```markdown
 -out         <str>   : Output directory            [current]
 -tmp         <str>   : Temporary directory         [/tmp]
 -scsize      <int>   : Soft-clipping min length    [25]
@@ -74,7 +75,7 @@ Mus musculus (NC_005089.1.gb)
 -makeblastdb <str>   : makeblastdb bin path        [PATH]
 -circos      <str>   : circos bin path             [PATH]
 --nocolor            : Disable output colors
-
+```
 
 
 ### Contact

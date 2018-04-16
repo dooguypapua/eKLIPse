@@ -1,0 +1,152 @@
+# KARYOTYPE
+
+karyotype =#KARYOTYPE
+
+# CHROMOSOMES 
+chromosomes_units = 1000
+
+# LINKS BETWEEN AREAS BLAT
+<links>
+
+z      = 0
+radius = 0.64r
+crest  = 0.5
+bezier_radius        = 0.25r
+bezier_radius_purity = 1
+
+<link>
+z            = 20
+color        = red
+thickness    = 3
+file         = #BLATLINKS_F
+record_limit = #LINKSNUMBER_F
+</link>
+</links>
+
+<link>
+z            = 20
+color        = green
+thickness    = 3
+file         = #BLATLINKS_R
+record_limit = #LINKSNUMBER_R
+</link>
+</links>
+
+
+# PLOTS
+<plots>
+
+# PLOT OF GENES' NAMES
+<plot>
+type  = text
+color = red
+file  = #FILEBANDS
+
+r0    = 1r
+r1    = 1r+300p
+
+label_size = 40
+label_font = condensed
+
+show_links     = yes
+link_dims      = 0p,2p,6p,2p,5p
+link_thickness = 2p
+link_color     = black
+
+label_snuggle        = yes
+max_snuggle_distance = 1r
+snuggle_tolerance    = 0.25r
+snuggle_sampling     = 2
+snuggle_refine       = yes
+</plot>
+
+# PLOT OF SOFCLIPP NUMBER BY POSITION
+<plot>
+type = line
+thickness = 8 #epaisseur
+file = #SCFILE
+min  = 0
+max  = 1.0
+r1   = 0.64r
+r0   = 0.44r
+color = vdred
+fill_color = dred
+extend_bin = no
+orientation = in
+</plot>
+
+# PLOT OF DEPTH
+<plot>
+type = line
+thickness = 4
+file = #DATACOV
+r1   = 0.82r
+r0   = 0.66r
+color = blue
+fill_color = chr16
+extend_bin = no
+orientation = in
+</plot>
+
+<plot>
+type = line
+thickness = 4
+file = #DATAMEDIANE
+r1   = 0.82r
+r0   = 0.66r
+color = chr14
+extend_bin = no
+orientation = in
+</plot>
+
+# PLOT FREQUENCE
+<plot>
+type = line
+thickness = 6
+file = #DATAFREQ
+min  = 0
+max  = 1
+r1   = 0.98r 
+r0   = 0.82r 
+color = black 
+extend_bin = no
+
+<backgrounds>
+show  = data
+<background>
+color = vvvlgrey
+</background>
+<background>
+color = vvlgrey
+y0    = 0.25r
+y1    = 0.50r
+</background>
+<background>
+color = vlgrey
+y0    = 0.50r
+y1    = 0.75r
+</background>
+<background>
+color = lgrey
+y0    = 0.75r
+</background>
+
+</backgrounds>
+</plot>
+</plots>
+
+<<include #IDEOGRAM>>
+<<include #TICKS>>
+<image>
+dir = #NAMEDIR
+file = #NAMEFILE
+png = yes
+svg = no
+radius = 1500p
+angle_offset = -90
+auto_alpha_colors = yes
+auto_alpha_steps  = 5
+</image>
+
+<<include colors_fonts_patterns.conf>> 
+<<include housekeeping.conf>> 

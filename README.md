@@ -1,17 +1,17 @@
 ## ![Image of Yaktocat](http://163.172.45.124/uploads/eklipse.png)
 
 
-## Graphical User Interface (Windows Portable Version)
+### Graphical User Interface (Windows Portable Version)
 
 A graphical user interface developped in Qt is available [here](http://163.172.45.124/uploads/eKLIPse_beta-0-2_winPortable.zip).
 
 GUI documentation and tutorial are also included.
 
+##
 
+### CLI (Linux)
 
-## CLI (Linux)
-
-### Requirements
+#### Requirements
 Please install following modules & tools :
 - [biopython](https://github.com/biopython/biopython)
 - [tqdm](https://github.com/tqdm/tqdm)
@@ -20,22 +20,20 @@ Please install following modules & tools :
 - [circos](http://circos.ca/software/download/)
 
 
-### Testing eKLIPse
+#### Testing eKLIPse
 
 ```markdown
 python eKLIPse.py --test
 
 ```
 
-### Running eKLIPse
+#### Running eKLIPse
 
 ```markdown
 python eKLIPse.py -in <INPUT file path> -ref <GBK file path> [OPTIONS]
 ```
 
-#### Required arguments
-
-##### 1 - INPUT
+##### -in
 The input file is a simple tabulated text file like:
 
 path_bam1 <tab\> title1
@@ -43,13 +41,13 @@ path_bam1 <tab\> title1
 path_bam2 <tab\> title2
 
 
-##### 2 - REFERENCE
-eKLIPse allow any mtDNA reference genome in Genbank format. 
+##### -ref
+eKLIPse accept any mtDNA reference genome in Genbank format. 
 
-3 references are already included in "/data": rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb)
+rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are available in "/data"
 
 
-#### Optionnal arguments
+##### -options
 ```markdown
 -out         <str>   : Output directory            [current]
 -tmp         <str>   : Temporary directory         [/tmp]
@@ -71,6 +69,7 @@ eKLIPse allow any mtDNA reference genome in Genbank format.
 --nocolor            : Disable output colors
 ```
 
+##
 
 ### Contact
 dooguy@tuta.io

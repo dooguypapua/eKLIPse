@@ -1,4 +1,4 @@
-## ![Image of Yaktocat](http://163.172.45.124/uploads/eklipse.png)
+## ![eklipse](http://163.172.45.124/uploads/eklipse_header.png)
 
 
 ### Graphical User Interface (Windows Portable Version)
@@ -47,7 +47,7 @@ eKLIPse accept any mtDNA reference genome in Genbank format.
 rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are available in "/data"
 
 
-##### -options
+##### [OPTIONS]
 ```markdown
 -out         <str>   : Output directory            [current]
 -tmp         <str>   : Temporary directory         [/tmp]

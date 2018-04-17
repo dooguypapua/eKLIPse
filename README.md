@@ -1,4 +1,4 @@
-![eklipse logo](http://163.172.45.124/uploads/eklipse_header.png?width=100)
+![eklipse logo](http://163.172.45.124/uploads/eklipseHeader.png?width=100)
 
 ##
 

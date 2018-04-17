@@ -1,4 +1,3 @@
-## ![eklipse](http://163.172.45.124/uploads/eklipse_header.png)
 
 
 ### Graphical User Interface (Windows Portable Version)

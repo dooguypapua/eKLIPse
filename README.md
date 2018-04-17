@@ -1,12 +1,14 @@
-## ![eklipse](http://163.172.45.124/uploads/eklipse_header.png)
+![eklipse logo](http://163.172.45.124/uploads/eklipse_header.png?width=100)
 
+##
 
-### Graphical User Interface (Windows Portable Version)
+### Graphical User Interface (Windows portable version)
 
 A graphical user interface developped in Qt is available [here](http://163.172.45.124/uploads/eKLIPse_beta-0-2_winPortable.zip).
 
 GUI documentation and tutorial are also included.
 
+![eklipse GUI](http://163.172.45.124/uploads/eKLIPse_GUI.png)
 ##
 
 ### CLI (Linux)
@@ -68,6 +70,8 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 -circos      <str>   : circos bin path             [PATH]
 --nocolor            : Disable output colors
 ```
+
+#### eKLIPse outputs
 
 ##
 

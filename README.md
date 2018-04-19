@@ -6,9 +6,10 @@
 
 A graphical user interface developped in Qt is available [here](http://163.172.45.124/uploads/eKLIPse_beta-0-2_winPortable.zip).
 
+![eklipse GUI](http://163.172.45.124/uploads/eKLIPse_GUI.png)
+
 GUI documentation and tutorial are also included.
 
-![eklipse GUI](http://163.172.45.124/uploads/eKLIPse_GUI.png)
 ##
 
 ### CLI (Linux)
@@ -72,6 +73,15 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 ```
 
 #### eKLIPse outputs
+
+3 categories of files are available;
+- "eKLIPse_deletions.csv" containing all predicted deletions results
+- "eKLIPse_genes.csv" summarizing cumulative deletion per mtDNA gene.
+- circos plot representation for each input alignement. A example is shown below.
+
+
+
+
 
 ##
 

@@ -78,7 +78,6 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 - "eKLIPse_genes.csv" summarizing cumulative deletion per mtDNA gene.
 - circos plot representation for each input alignement. A example is shown below.
 
-![eklipse circos legend](http://163.172.45.124/uploads/eklipse_circos_legend.png?width=100)
 
 
 ##

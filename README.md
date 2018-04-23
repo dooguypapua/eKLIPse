@@ -15,6 +15,7 @@ A graphical user interface developped in Qt is available [here](http://163.172.4
 
 #### Requirements
 Please install following modules & tools :
+- python 2.7
 - [biopython](https://github.com/biopython/biopython)
 - [tqdm](https://github.com/tqdm/tqdm)
 - [samtools](https://github.com/samtools/samtools)
@@ -28,6 +29,7 @@ Please install following modules & tools :
 python eKLIPse.py --test
 
 ```
+Use "-samtools", "-blastn", "-makeblastdb" and "-circos" in executable not in your $PATH.
 
 #### Running eKLIPse
 

@@ -4,9 +4,7 @@
 
 ### Graphical User Interface (Windows portable version)
 
-A graphical user interface developped in Qt is available [here](http://163.172.45.124/uploads/eKLIPse_beta-0-2_winPortable.zip).
-
-GUI documentation is included in the archive.
+A graphical user interface developped in Qt is available [here](http://163.172.45.124/uploads/eKLIPse_beta-0-2_winPortable.zip) (with GUI tutorial).
 
 ![eklipse GUI](http://163.172.45.124/uploads/eKLIPse_GUI.png)
 

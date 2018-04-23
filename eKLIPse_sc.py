@@ -25,12 +25,7 @@ def Read_alignment(titleBam,dicoInit,lstError):
         # Switch to downsampled BAM if exist
         if dicoInit['dicoBam'][titleBam]['path_downsampling']!="" : dicoInit['dicoBam'][titleBam]['path'] = dicoInit['dicoBam'][titleBam]['path_downsampling']
         for alignment in pybam.read(dicoInit['dicoBam'][titleBam]['path']):
-
-
-            #if alignment.sam_cigar_string.__contains__("H"): print alignment.sam_qname,str(alignment.sam_pos0)
-
             if alignment.file_chromosomes[alignment.sam_refID]==dicoInit["dicoBam"][titleBam]['refName'] and alignment.sam_mapq>=dicoInit['minQ'] and not alignment.sam_cigar_string.__contains__("H"):# and not explain_sam_flags(alignment.sam_flag).__contains__("second in pair") and not explain_sam_flags(alignment.sam_flag).__contains__("supplementary"):
-
                 #***** RETRIEVE positions tuple & lastMapped infos *****#
                 positionsLstTuple,lastMappedPos,lastMappedPosRead = cigar_list_to_tuple(alignment.sam_cigar_list,alignment.sam_pos0)
                 #***** FORWARD reads *****#
@@ -39,14 +34,12 @@ def Read_alignment(titleBam,dicoInit,lstError):
                     for posTuple in positionsLstTuple:
                         try : dicoBam[posTuple[1]+1]['nb_reads_F']+=1
                         except: pass # None case
-
                     # Count softclipped (right soft-clipping)
                     length, operation = alignment.sam_cigar_list[len(alignment.sam_cigar_list)-1]
                     if operation=="S":
                         dicoBam[lastMappedPos]['nb_sc_reads_F']+=1
                         # Write to Fasta (apply filter) / not consider 'N'
                         if length-alignment.sam_seq[len(alignment.sam_seq)-length:].count("N")>=dicoInit['SCsize'] and lastMappedPos+length<=dicoInit["dicoGbk"]['refLength']:
-                            boola = True
                             nb_mapped_part = min(dicoInit["MappedPart"],lastMappedPosRead)
                             FASTA.write(">"+str(lastMappedPos)+"_"+str(nb_mapped_part)+"_scrF_"+alignment.sam_qname+"\n"+alignment.sam_seq[len(alignment.sam_seq)-length-nb_mapped_part:]+"\n")
                             dicoBam[lastMappedPos]['nb_sc_fasta_F']+=1
@@ -93,7 +86,6 @@ def SC_blast(titleBam,dicoInit,lstError):
         if os.path.getsize(pathSCfasta)!=0:
             cmd = dicoInit['pathBlastN']+" -task blastn-short -query "+pathSCfasta+" -db "+os.path.join(dicoInit['pathTmpDir'],"ref.fa")+" -outfmt \"10 qseqid qstart qend sstart send qlen length\" -out "+pathSCDELBLAST+" -perc_identity "+str(dicoInit['blastIdThreshold'])+" -max_hsps 1 -gapopen "+str(dicoInit['blastGapOpen'])+" -gapextend "+str(dicoInit['blastGapExt'])
             os.system(cmd)
-           
             #***** Read Blast output file *****#
             IN = open(pathSCDELBLAST,'r')
             lst_lines = split(IN.read(),"\n")
@@ -137,7 +129,7 @@ def SC_blast(titleBam,dicoInit,lstError):
                                     dicoDel[delName]['scrR']['initial_SCposRead'].append(SCposRead)
                                     if sstart<dicoDel[delName]['scrR']['limit']: dicoDel[delName]['scrR']['limit'] = sstart
                                 else: dicoDel[delName] = { 'scrF':{'nbBlast':0,'limit':0,'initial_SCposRead':[]}, 'scrR':{'nbBlast':1,'limit':sstart,'initial_SCposRead':[SCposRead]}, 'freqF':0.0, 'freqR':0.0 }
-
+   
         #***** WRITE .json results file *****#
         JSON = open(pathBLASTjson,'wb')
         JSON.write(json.JSONEncoder().encode(dicoDel))
@@ -155,11 +147,11 @@ def deletionPrediction(titleBam,dicoInit,lstError):
         pathSCjson = os.path.join(dicoInit['pathTmpDir'],titleBam+"_SC.json")
         pathBLASTjson = os.path.join(dicoInit['pathTmpDir'],titleBam+"_BLAST.json")
         pathCumuljson = os.path.join(dicoInit['pathTmpDir'],titleBam+"_cumul.json")
-        
+       
         #***** LOAD JSON files *****#
         dicoBam = load_json(pathSCjson)
         dicoDel = load_json(pathBLASTjson)
-
+       
         #**** SHIFT Deletions *****#
         # Block one position and apply shift
         dico_shift_del = {}
@@ -222,7 +214,7 @@ def deletionPrediction(titleBam,dicoInit,lstError):
                                                              'scrR':{'nbBlast':nbBlast_R,'limit':limit_max_end,'initial_SCposRead':initial_SCposRead_R},\
                                                              'sum_start_sc_fasta':sum_start_sc_fasta, 'sum_end_sc_fasta':sum_end_sc_fasta,\
                                                              'freqF':0.0, 'freqR':0.0 }
-        
+    
         #***** COMPUTE Frequencies *****#
         for delName in dicoDel.keys():
             # FILTER deletion in only one Blast direction
@@ -254,11 +246,6 @@ def deletionPrediction(titleBam,dicoInit,lstError):
                 nb_sc_reads_R = float(max(lst_nb_sc_reads_R))
                 dicoDel[delName]['freqF'] = (nb_sc_reads_F/nb_reads_F) * (nb_blast_F/nb_sc_fasta_F) *100.0
                 dicoDel[delName]['freqR'] = (nb_sc_reads_R/nb_reads_R) * (nb_blast_R/nb_sc_fasta_R) *100.0
-
-
-                print "\n"+delName+": "+str(max_occ_start)+" "+str(max_occ_end)+" / blastF="+str(nb_blast_F)+" / blastR="+str(nb_blast_R)+" / nb_sc_reads_F="+str(nb_sc_reads_F)+" / nb_sc_reads_R="+str(nb_sc_reads_R)+" / nb_reads_F="+str(nb_reads_F)+" / nb_reads_R="+str(nb_reads_R)
-
-
 
         #***** CUMULATIVE Frequency *****#
         dicoCumulFreq = {}

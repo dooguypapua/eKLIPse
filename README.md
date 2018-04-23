@@ -29,7 +29,7 @@ Please install following modules & tools :
 python eKLIPse.py --test
 
 ```
-Use "-samtools", "-blastn", "-makeblastdb" and "-circos" in executable not in your $PATH.
+(add "-samtools", "-blastn", "-makeblastdb" and "-circos" options for executable files not in $PATH)
 
 #### Running eKLIPse
 

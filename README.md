@@ -64,7 +64,7 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 -cov         <int>   : BLAST %coverage threshold   [70]
 -gapopen     <int>   : BLAST Cost to open a gap    [0:proton, 5:illumina]
 -gapext      <int>   : BLAST Cost to extend a gap  [2]
--thread      <int>   : Number of thread to use     [2]
+-thread      <int>   : Number of thread to use     [2]qui
 -samtools    <str>   : samtools bin path           [PATH]
 -blastn      <str>   : blastn bin path             [PATH]
 -makeblastdb <str>   : makeblastdb bin path        [PATH]
@@ -74,13 +74,11 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 
 #### eKLIPse outputs
 
-3 categories of files are available;
 - "eKLIPse_deletions.csv" containing all predicted deletions results
 - "eKLIPse_genes.csv" summarizing cumulative deletion per mtDNA gene.
 - circos plot representation for each input alignement. A example is shown below.
 
-
-
+![eklipse circos legend](http://163.172.45.124/uploads/eklipse_circos_legend.png?width=100)
 
 
 ##

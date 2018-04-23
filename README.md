@@ -27,9 +27,9 @@ Please install following modules & tools :
 
 ```markdown
 python eKLIPse.py --test
-
 ```
-(add "-samtools", "-blastn", "-makeblastdb" and "-circos" options for executable files not in $PATH)
+* add "-samtools", "-blastn", "-makeblastdb" and "-circos" options for executable files not in $PATH *
+
 
 #### Running eKLIPse
 

@@ -19,7 +19,7 @@ Please install following modules & tools :
 - [biopython](https://github.com/biopython/biopython)
 - [tqdm](https://github.com/tqdm/tqdm)
 - [samtools](https://github.com/samtools/samtools)
-- [blastn & makeblastdb](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
+- [blastn >=2.3.0+ & makeblastdb](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
 - [circos](http://circos.ca/software/download/)
 
 

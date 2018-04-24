@@ -32,7 +32,7 @@ RUN cd /eKLIPse
 # Getting good version of blast
 RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.7.1/ncbi-blast-2.7.1+-x64-linux.tar.gz
 RUN tar -xvzf ncbi-blast-2.7.1+-x64-linux.tar.gz
-RUN PATH=$PATH:/eKLIPse/ncbi-blast-2.7.1+/bin/
 
+ENV PATH="/eKLIPse/ncbi-blast-2.7.1+/bin/:${PATH}"
 
 #CMD ["python eKLIPse.py --test"]

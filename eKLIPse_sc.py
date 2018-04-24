@@ -214,11 +214,12 @@ def deletionPrediction(titleBam,dicoInit,lstError):
                                                              'scrR':{'nbBlast':nbBlast_R,'limit':limit_max_end,'initial_SCposRead':initial_SCposRead_R},\
                                                              'sum_start_sc_fasta':sum_start_sc_fasta, 'sum_end_sc_fasta':sum_end_sc_fasta,\
                                                              'freqF':0.0, 'freqR':0.0 }
-    
+
         #***** COMPUTE Frequencies *****#
         for delName in dicoDel.keys():
-            # FILTER deletion in only one Blast direction
-            if dicoDel[delName]['scrF']['nbBlast']==0 or dicoDel[delName]['scrR']['nbBlast']==0: del(dicoDel[delName])
+            # FILTERs 
+            if dicoInit["bilateral"]==True and (dicoDel[delName]['scrF']['nbBlast']<dicoInit["minblast"] or dicoDel[delName]['scrR']['nbBlast']<dicoInit["minblast"]): del(dicoDel[delName])
+            elif dicoInit["bilateral"]==False and dicoDel[delName]['scrF']['nbBlast']<dicoInit["minblast"] and dicoDel[delName]['scrR']['nbBlast']<dicoInit["minblast"]: del(dicoDel[delName])
             # Compute frequency
             else:
                 start = int(split(delName,"-")[0])
@@ -246,6 +247,8 @@ def deletionPrediction(titleBam,dicoInit,lstError):
                 nb_sc_reads_R = float(max(lst_nb_sc_reads_R))
                 dicoDel[delName]['freqF'] = (nb_sc_reads_F/nb_reads_F) * (nb_blast_F/nb_sc_fasta_F) *100.0
                 dicoDel[delName]['freqR'] = (nb_sc_reads_R/nb_reads_R) * (nb_blast_R/nb_sc_fasta_R) *100.0
+                dicoDel[delName]['depthF'] = nb_reads_F
+                dicoDel[delName]['depthR'] = nb_reads_R
 
         #***** CUMULATIVE Frequency *****#
         dicoCumulFreq = {}
@@ -281,7 +284,7 @@ def create_results_table(dicoInit,lstError):
     OUTDEL = open(pathOutDel,'w')
     OUTGENES = open(pathOutGenes,'w')
     # Write headers
-    headerDel = "\"Title\";\"5' breakpoint\";\"3' breakpoint\";\"Freq\";\"Freq For\";\"Freq Rev\";\"5' Blast\";\"3' Blast\";\"Repetition\"\n"
+    headerDel = "\"Title\";\"5' breakpoint\";\"3' breakpoint\";\"Freq\";\"Freq For\";\"Freq Rev\";\"5' Blast\";\"3' Blast\";\"5' Depth\";\"3' Depth\";\"Repetition\"\n"
     OUTDEL.write(headerDel)
     headerGenes = "\"Gene\";\"Start\";\"End\";\"Type\""
     for titleBam in dicoInit["dicoBam"].keys(): headerGenes = headerGenes+",\""+titleBam+"\""
@@ -318,20 +321,18 @@ def create_results_table(dicoInit,lstError):
                     repetition_left = repetition_left+dicoInit["dicoGbk"]['refSeq'][start-1-cpt_left]
                     cpt_left+=1
                 repetition_left = repetition_left[::-1]
-
                 # Keep best one
                 if cpt_right==cpt_left==0: repetition = "none"
                 elif cpt_right>=cpt_left:
                     repetition = str(start+1)+"-"+repetition_right+"-"+str(start+cpt_right)+" <> "+str(end)+"-"+repetition_right+"-"+str(end-1+cpt_right)
                 else:
                     repetition = str(start-cpt_left)+"-"+repetition_left+"-"+str(start-1)+" <> "+str(end+1-cpt_left)+"-"+repetition_left+"-"+str(end) 
-
                 # Write deletion line
                 deletion = dicoSortDel[start][end]
                 delPercent = ((dicoDel[deletion]['freqF']+dicoDel[deletion]['freqR'])/2.0)
                 ToWrite = "\""+titleBam+"\";\""+str(start)+"\";\""+str(end)+"\";\""+str(delPercent).replace(".",",")+\
                           "\";\""+str(dicoDel[deletion]['freqF']).replace(".",",")+"\";\""+str(dicoDel[deletion]['freqR']).replace(".",",")+\
-                          "\";\""+str(dicoDel[deletion]['scrF']['nbBlast'])+"\";\""+str(dicoDel[deletion]['scrR']['nbBlast'])+"\";\""+repetition+"\"\n"
+                          "\";\""+str(dicoDel[deletion]['scrF']['nbBlast'])+"\";\""+str(dicoDel[deletion]['scrR']['nbBlast'])+"\";\""+str(dicoDel[delName]['depthF'])+"\";\""+str(dicoDel[delName]['depthR'])+"\";\""+repetition+"\"\n"
                 OUTDEL.write(ToWrite)
 
         #***** GENES max per genes hashtable *****#

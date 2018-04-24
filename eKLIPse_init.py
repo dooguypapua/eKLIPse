@@ -33,7 +33,8 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
                 'windows':False,\
                 'lstTitleBam':[],\
                 'minQ':20, 'SCsize':25, 'MappedPart':20,\
-                'downCov':500000, 'delShift':5,'minMitoSize':1000,\
+                'downCov':500000, 'delShift':5,\
+                'minMitoSize':1000, 'minblast':1, 'bilateral':True,\
                 'blastIdThreshold':80, 'blastCovThreshold':70,'blastGapOpen':0, 'blastGapExt':2,\
                 'nbThread':1, 'boolColor':boolColor,'boolQT':boolQT,\
                 }
@@ -141,6 +142,16 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
         elif argv[i]=="-minMitoSize": # 
             if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-minMitoSize\" integer expected")
             else: dicoInit["minMitoSize"] = int(argv[i+1])
+        # Minimal number of BLAST per breakpoint
+        elif argv[i]=="-minblast": # 
+            if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-minblast\" integer expected")
+            else: dicoInit["minblast"] = int(argv[i+1])
+        # Filter non-bilateral BLAST deletions
+        elif argv[i]=="-bilateral": # 
+            if argv[i+1].lower()!="true" and argv[i+1].lower()!="false": lstErrorDisplay.append("\"-bilateral\" boolean expected")
+            else:
+                if argv[i+1].lower()=="true": dicoInit["bilateral"] = True
+                else: dicoInit["bilateral"] = False
         # BlastN analysis threshold
         elif argv[i]=="-id": # The minimum identity to keep a blast
             if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-blast_id\" integer expected")
@@ -240,25 +251,27 @@ def manual_display(lst_error,dicoInit,spinner):
     if dicoInit['boolQT']==False: spinner.stop()
     printcolor("\n\n  USAGE: python eKLIPse -in <FILE with Alignment paths> -ref <GBK reference> [OPTIONS]\n\n","bold yellow",dicoInit['boolColor'])
     printcolor("  OPTIONS:\n","bold white",dicoInit['boolColor'])
-    printcolor("    -out         <str>   : Output directory            [current]\n","white",dicoInit['boolColor'])
-    printcolor("    -tmp         <str>   : Temporary directory         [/tmp]\n","white",dicoInit['boolColor'])
-    printcolor("    -scsize      <int>   : Soft-clipping min length    [25]\n","white",dicoInit['boolColor'])
-    printcolor("    -mapsize     <int>   : Mapped read to blast length [20]\n","white",dicoInit['boolColor'])
-    printcolor("    -downcov     <int>   : Downsampling reads number   [500000] (0=disable)\n","white",dicoInit['boolColor'])
-    printcolor("    -minq        <int>   : Read quality threshold      [20]\n","white",dicoInit['boolColor'])
-    printcolor("    -shift       <int>   : Deletion position shift     [5]\n","white",dicoInit['boolColor'])
-    printcolor("    -minMitoSize <int>   : Minimal deleted mito size   [1000]\n","white",dicoInit['boolColor'])   
-    printcolor("    -id          <int>   : BLAST %identity threshold   [80]\n","white",dicoInit['boolColor'])
-    printcolor("    -cov         <int>   : BLAST %coverage threshold   [70]\n","white",dicoInit['boolColor'])
-    printcolor("    -gapopen     <int>   : BLAST Cost to open a gap    [0:proton, 5:illumina]\n","white",dicoInit['boolColor'])
-    printcolor("    -gapext      <int>   : BLAST Cost to extend a gap  [2]\n","white",dicoInit['boolColor'])
-    printcolor("    -thread      <int>   : Number of thread to use     [2]\n","white",dicoInit['boolColor'])
-    printcolor("    -samtools    <str>   : samtools bin path           [PATH]\n","white",dicoInit['boolColor'])   
-    printcolor("    -blastn      <str>   : blastn bin path             [PATH]\n","white",dicoInit['boolColor'])
-    printcolor("    -makeblastdb <str>   : makeblastdb bin path        [PATH]\n","white",dicoInit['boolColor'])    
-    printcolor("    -circos      <str>   : circos bin path             [PATH]\n","white",dicoInit['boolColor'])
+    printcolor("    -out          <str>  : Output directory path                  [current]\n","white",dicoInit['boolColor'])
+    printcolor("    -tmp          <str>  : Temporary directory path               [/tmp]\n","white",dicoInit['boolColor'])
+    printcolor("    -scsize       <int>  : Soft-clipping minimal length           [25]\n","white",dicoInit['boolColor'])
+    printcolor("    -mapsize      <int>  : Upstream mapping length                [20]\n","white",dicoInit['boolColor'])
+    printcolor("    -downcov      <int>  : Downsampling reads number              [500000] (0=disable)\n","white",dicoInit['boolColor'])
+    printcolor("    -minq         <int>  : Read quality threshold                 [20]\n","white",dicoInit['boolColor'])
+    printcolor("    -shift        <int>  : Breakpoint BLAST shift length          [5]\n","white",dicoInit['boolColor'])
+    printcolor("    -minblast     <int>  : Minimal number of BLAST per breakpoint [1]\n","white",dicoInit['boolColor'])
+    printcolor("    -bilateral    <bool> : Filter non-bilateral BLAST deletions   [True]\n","white",dicoInit['boolColor'])
+    printcolor("    -minMitoSize  <int>  : Filter resulting mitochondria size     [1000]\n","white",dicoInit['boolColor'])
+    printcolor("    -id           <int>  : BLAST %identity threshold              [80]\n","white",dicoInit['boolColor'])
+    printcolor("    -cov          <int>  : BLAST %coverage threshold              [70]\n","white",dicoInit['boolColor'])
+    printcolor("    -gapopen      <int>  : BLAST cost to open a gap               [0:proton, 5:illumina]\n","white",dicoInit['boolColor'])
+    printcolor("    -gapext       <int>  : BLAST cost to extend a gap             [2]\n","white",dicoInit['boolColor'])
+    printcolor("    -thread       <int>  : Number of thread to use                [2]\n","white",dicoInit['boolColor'])
+    printcolor("    -samtools     <str>  : samtools bin path                      [$PATH]\n","white",dicoInit['boolColor'])   
+    printcolor("    -blastn       <str>  : BLASTn bin path                        [$PATH]\n","white",dicoInit['boolColor'])
+    printcolor("    -makeblastdb  <str>  : makeblastdb bin path                   [$PATH]\n","white",dicoInit['boolColor'])    
+    printcolor("    -circos       <str>  : circos bin path                        [$PATH]\n","white",dicoInit['boolColor'])
     printcolor("    --test               : eKLIPse test\n","white",dicoInit['boolColor'])
-    printcolor("    --nocolor            : Disable output colors\n","white",dicoInit['boolColor'])
+    printcolor("    --nocolor            : Disable output colors\n\n","white",dicoInit['boolColor'])
     printerror(lst_error)
     try: shutil.rmtree(dicoInit['pathOutputDir']) ; shutil.rmtree(dicoInit['pathTmpDir'])
     except: pass

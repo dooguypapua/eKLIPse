@@ -14,7 +14,7 @@ A graphical user interface developped in Qt is available [here](http://163.172.4
 ### CLI (Linux)
 
 #### Requirements
-Please install following modules & tools :
+Please install the following modules & tools :
 - python 2.7
 - [biopython](https://github.com/biopython/biopython)
 - [tqdm](https://github.com/tqdm/tqdm)
@@ -53,23 +53,26 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 
 ##### [OPTIONS]
 ```markdown
--out         <str>   : Output directory            [current]
--tmp         <str>   : Temporary directory         [/tmp]
--scsize      <int>   : Soft-clipping min length    [25]
--mapsize     <int>   : Mapped read to blast length [20]
--downcov     <int>   : Downsampling reads number   [500000] (0=disable)
--minq        <int>   : Read quality threshold      [20]
--shift       <int>   : Deletion position shift     [5]
--minMitoSize <int>   : Minimal deleted mito size   [1000]
--id          <int>   : BLAST %identity threshold   [80]
--cov         <int>   : BLAST %coverage threshold   [70]
--gapopen     <int>   : BLAST Cost to open a gap    [0:proton, 5:illumina]
--gapext      <int>   : BLAST Cost to extend a gap  [2]
--thread      <int>   : Number of thread to use     [2]qui
--samtools    <str>   : samtools bin path           [PATH]
--blastn      <str>   : blastn bin path             [PATH]
--makeblastdb <str>   : makeblastdb bin path        [PATH]
--circos      <str>   : circos bin path             [PATH]
+-out          <str>  : Output directory path                  [current]
+-tmp          <str>  : Temporary directory path               [/tmp]
+-scsize       <int>  : Soft-clipping minimal length           [25]
+-mapsize      <int>  : Upstream mapping length                [20]
+-downcov      <int>  : Downsampling reads number              [500000] (0=disable)
+-minq         <int>  : Read quality threshold                 [20]
+-shift        <int>  : Breakpoint BLAST shift length          [5]
+-minblast     <int>  : Minimal number of BLAST per breakpoint [1]
+-bilateral    <bool> : Filter non-bilateral BLAST deletions   [True]
+-minMitoSize  <int>  : Filter resulting mitochondria size     [1000]
+-id           <int>  : BLAST %identity threshold              [80]
+-cov          <int>  : BLAST %coverage threshold              [70]
+-gapopen      <int>  : BLAST cost to open a gap               [0:proton, 5:illumina]
+-gapext       <int>  : BLAST cost to extend a gap             [2]
+-thread       <int>  : Number of thread to use                [2]
+-samtools     <str>  : samtools bin path                      [$PATH]
+-blastn       <str>  : BLASTn bin path                        [$PATH]
+-makeblastdb  <str>  : makeblastdb bin path                   [$PATH]
+-circos       <str>  : circos bin path                        [$PATH]
+--test               : eKLIPse test
 --nocolor            : Disable output colors
 ```
 

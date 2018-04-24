@@ -58,8 +58,11 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
         if not "-samtools" in argv and any(os.access(os.path.join(path, "samtools"), os.X_OK) for path in os.environ["PATH"].split(os.pathsep))==False: manual_display(["eKLIPse required \"samtools\" in PATH or \"-samtools\" defined"],dicoInit,spinner)
 
     #**** Read Passed Arguments *****#
+    prev_arg = ""
     lstErrorDisplay = []
     for i in range(1,len(argv),2):
+        if prev_arg=="--": i-=1
+        prev_arg = ""
         # Input file with BAMs path
         if argv[i]=="-in":
             if not os.path.isfile(argv[i+1]): lstErrorDisplay.append("Input file \""+argv[i+1]+"\" not found")
@@ -95,6 +98,7 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
                             dicoInit["dicoGbk"]['lstGene'].append([feature.qualifiers['gene'][0],int(feature.location.start)+1,int(feature.location.end),geneType])
             if len(dicoInit["dicoGbk"])==0: lstErrorDisplay.append("Cannot Read Reference GBK file \""+argv[i+1]+"\"")
         elif argv[i]=="--test":
+            prev_arg = "--"
             dicoInit['lstTitleBam'] = ["test_Illumina","test_proton"]
             dicoInit["dicoBam"] = {"test_Illumina":{'path':dicoInit["pathDataDir"]+"/test_illumina.bam", 'refName':"", 'nbReads':0, 'path_downsampling':""},"test_proton":{'path':dicoInit["pathDataDir"]+"/test_proton.bam", 'refName':"", 'nbReads':0, 'path_downsampling':""}}
             dicoInit['pathGbkRef'] = dicoInit["pathDataDir"]+"/NC_012920.1.gb"
@@ -182,7 +186,8 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
         elif argv[i]=="-samtools":
             if not os.path.isfile(argv[i+1]): lstErrorDisplay.append("\"-samtools\" binary not found")
             else: dicoInit['pathSamtools'] = argv[i+1]
-        elif argv[i]!="--qtgui" and argv[i]!="--nocolor": lstErrorDisplay.append("\""+argv[i]+"\" unrecognized parameters")
+        elif argv[i]=="--qtgui" or argv[i]=="--nocolor": prev_arg = "--"
+        else: lstErrorDisplay.append("\""+argv[i]+"\" unrecognized parameters")
 
     #***** CHECK GAP OPEN & EXTEND *****#
     boolGap = False

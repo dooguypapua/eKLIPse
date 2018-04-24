@@ -62,7 +62,7 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 -shift        <int>  : Breakpoint BLAST shift length          [5]
 -minblast     <int>  : Minimal number of BLAST per breakpoint [1]
 -bilateral    <bool> : Filter non-bilateral BLAST deletions   [True]
--minMitoSize  <int>  : Filter resulting mitochondria size     [1000]
+-mitosize     <int>  : Minimal resulting mitochondria size    [1000]
 -id           <int>  : BLAST %identity threshold              [80]
 -cov          <int>  : BLAST %coverage threshold              [70]
 -gapopen      <int>  : BLAST cost to open a gap               [0:proton, 5:illumina]

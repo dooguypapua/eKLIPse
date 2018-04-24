@@ -34,7 +34,7 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
                 'lstTitleBam':[],\
                 'minQ':20, 'SCsize':25, 'MappedPart':20,\
                 'downCov':500000, 'delShift':5,\
-                'minMitoSize':1000, 'minblast':1, 'bilateral':True,\
+                'mitosize':1000, 'minblast':1, 'bilateral':True,\
                 'blastIdThreshold':80, 'blastCovThreshold':70,'blastGapOpen':0, 'blastGapExt':2,\
                 'nbThread':1, 'boolColor':boolColor,'boolQT':boolQT,\
                 }
@@ -139,9 +139,9 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
             if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-shift\" integer expected")
             else: dicoInit["delShift"] = int(argv[i+1])
         # Minimal length for deleted mito
-        elif argv[i]=="-minMitoSize": # 
-            if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-minMitoSize\" integer expected")
-            else: dicoInit["minMitoSize"] = int(argv[i+1])
+        elif argv[i]=="-mitosize": # 
+            if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-mitosize\" integer expected")
+            else: dicoInit["mitosize"] = int(argv[i+1])
         # Minimal number of BLAST per breakpoint
         elif argv[i]=="-minblast": # 
             if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-minblast\" integer expected")
@@ -260,7 +260,7 @@ def manual_display(lst_error,dicoInit,spinner):
     printcolor("    -shift        <int>  : Breakpoint BLAST shift length          [5]\n","white",dicoInit['boolColor'])
     printcolor("    -minblast     <int>  : Minimal number of BLAST per breakpoint [1]\n","white",dicoInit['boolColor'])
     printcolor("    -bilateral    <bool> : Filter non-bilateral BLAST deletions   [True]\n","white",dicoInit['boolColor'])
-    printcolor("    -minMitoSize  <int>  : Filter resulting mitochondria size     [1000]\n","white",dicoInit['boolColor'])
+    printcolor("    -mitosize     <int>  : Minimal resulting mitochondria size    [1000]\n","white",dicoInit['boolColor'])
     printcolor("    -id           <int>  : BLAST %identity threshold              [80]\n","white",dicoInit['boolColor'])
     printcolor("    -cov          <int>  : BLAST %coverage threshold              [70]\n","white",dicoInit['boolColor'])
     printcolor("    -gapopen      <int>  : BLAST cost to open a gap               [0:proton, 5:illumina]\n","white",dicoInit['boolColor'])
@@ -303,7 +303,7 @@ def config_display(dicoInit):
     printcolor("    Deletion shift     : ","bold white",dicoInit['boolColor'])
     printcolor(str(dicoInit['delShift'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
     printcolor("    Minimal mito size  : ","bold white",dicoInit['boolColor'])
-    printcolor(str(dicoInit['minMitoSize'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
+    printcolor(str(dicoInit['mitosize'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
     printcolor("    BLAST thresholds   : ","bold white",dicoInit['boolColor'])
     printcolor("blast_id="+str(dicoInit['blastIdThreshold'])+" | blast_cov="+str(dicoInit['blastCovThreshold'])+" | blast_gapopen="+str(dicoInit['blastGapOpen'])+" | blast_gapext="+str(dicoInit['blastGapExt'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
     printcolor("    Downsampling       : ","bold white",dicoInit['boolColor'])

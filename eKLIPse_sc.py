@@ -112,7 +112,7 @@ def SC_blast(titleBam,dicoInit,lstError):
                             delEnd = sstart
                             delName = str(delStart)+"-"+str(delEnd)
                             # Filter deletions
-                            if (delStart<delEnd and delEnd-delStart>=dicoInit['SCsize']) or (delStart>delEnd and delStart-delEnd>=dicoInit["minMitoSize"]):
+                            if (delStart<delEnd and delEnd-delStart>=dicoInit['SCsize']) or (delStart>delEnd and delStart-delEnd>=dicoInit["mitosize"]):
                                 if delName in dicoDel:
                                     dicoDel[delName]['scrF']['nbBlast']+=1
                                     dicoDel[delName]['scrF']['initial_SCposRead'].append(SCposRead)
@@ -123,7 +123,7 @@ def SC_blast(titleBam,dicoInit,lstError):
                             delEnd = SCposRead
                             delName = str(delStart)+"-"+str(delEnd)
                             # Filter deletions
-                            if (delStart<delEnd and delEnd-delStart>=dicoInit['SCsize']) or (delStart>delEnd and delStart-delEnd>=dicoInit["minMitoSize"]):
+                            if (delStart<delEnd and delEnd-delStart>=dicoInit['SCsize']) or (delStart>delEnd and delStart-delEnd>=dicoInit["mitosize"]):
                                 if delName in dicoDel:
                                     dicoDel[delName]['scrR']['nbBlast']+=1
                                     dicoDel[delName]['scrR']['initial_SCposRead'].append(SCposRead)

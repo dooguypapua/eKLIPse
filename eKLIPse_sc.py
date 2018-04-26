@@ -239,16 +239,18 @@ def deletionPrediction(titleBam,dicoInit,lstError):
                     for i in range(init_pos-dicoInit["delShift"],init_pos+dicoInit["delShift"]+1,1):
                         lst_nb_sc_reads_R.append(dicoBam[str(i)]['nb_sc_reads_R'])
                         if not i in set_sc_fasta_pos_R : nb_sc_fasta_R+=dicoBam[str(i)]['nb_sc_fasta_R'] ; set_sc_fasta_pos_R.add(i)
-                max_occ_start = max(dicoDel[delName]['scrF']['initial_SCposRead'],key=dicoDel[delName]['scrF']['initial_SCposRead'].count)
-                max_occ_end = max(dicoDel[delName]['scrR']['initial_SCposRead'],key=dicoDel[delName]['scrR']['initial_SCposRead'].count)
-                nb_reads_F = float(dicoBam[str(max_occ_start)]['nb_reads_F'])
-                nb_reads_R = float(dicoBam[str(max_occ_end)]['nb_reads_R'])
-                nb_sc_reads_F = float(max(lst_nb_sc_reads_F))
-                nb_sc_reads_R = float(max(lst_nb_sc_reads_R))
-                dicoDel[delName]['freqF'] = (nb_sc_reads_F/nb_reads_F) * (nb_blast_F/nb_sc_fasta_F) *100.0
-                dicoDel[delName]['freqR'] = (nb_sc_reads_R/nb_reads_R) * (nb_blast_R/nb_sc_fasta_R) *100.0
-                dicoDel[delName]['depthF'] = nb_reads_F
-                dicoDel[delName]['depthR'] = nb_reads_R
+                try: # max() arg is an empty sequence
+                    max_occ_start = max(dicoDel[delName]['scrF']['initial_SCposRead'],key=dicoDel[delName]['scrF']['initial_SCposRead'].count)
+                    max_occ_end = max(dicoDel[delName]['scrR']['initial_SCposRead'],key=dicoDel[delName]['scrR']['initial_SCposRead'].count)
+                    nb_reads_F = float(dicoBam[str(max_occ_start)]['nb_reads_F'])
+                    nb_reads_R = float(dicoBam[str(max_occ_end)]['nb_reads_R'])
+                    nb_sc_reads_F = float(max(lst_nb_sc_reads_F))
+                    nb_sc_reads_R = float(max(lst_nb_sc_reads_R))
+                    dicoDel[delName]['freqF'] = (nb_sc_reads_F/nb_reads_F) * (nb_blast_F/nb_sc_fasta_F) *100.0
+                    dicoDel[delName]['freqR'] = (nb_sc_reads_R/nb_reads_R) * (nb_blast_R/nb_sc_fasta_R) *100.0
+                    dicoDel[delName]['depthF'] = nb_reads_F
+                    dicoDel[delName]['depthR'] = nb_reads_R
+                except: pass
 
         #***** CUMULATIVE Frequency *****#
         dicoCumulFreq = {}

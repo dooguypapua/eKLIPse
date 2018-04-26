@@ -51,7 +51,7 @@ path_bam1 <tab\> title1
 
 path_bam2 <tab\> title2
 
-*.bam or .sam files could be single or paired-end.
+*.bam or .sam files could be single or paired-end.*
 
 ##### -ref
 eKLIPse accept any mtDNA reference genome in Genbank format. 

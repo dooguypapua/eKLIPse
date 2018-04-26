@@ -14,7 +14,7 @@ A graphical user interface developped in Qt is available [here](http://163.172.4
 
 A docker image is also available.
 
-Follow instruction ![here](https://docs.docker.com/get-started/part2/#build-the-app)
+Follow instruction [here](https://docs.docker.com/get-started/part2/#build-the-app)
 
 ##
 

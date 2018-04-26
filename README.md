@@ -8,6 +8,13 @@ A graphical user interface developped in Qt is available [here](http://163.172.4
 
 ![eklipse GUI](http://163.172.45.124/uploads/eKLIPse_GUI.png)
 
+##
+
+### Docker image
+
+A docker image is also available.
+
+Follow instruction ![here](https://docs.docker.com/get-started/part2/#build-the-app)
 
 ##
 

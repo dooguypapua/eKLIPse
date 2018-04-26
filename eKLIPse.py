@@ -17,7 +17,8 @@ if "--nocolor" in sys.argv: boolColor = False
 if "--qtgui" in sys.argv: boolQT = True ; boolColor = False
 if boolQT==False:
     os.system('cls' if os.name == 'nt' else 'clear')
-    printcolor("\n   ___              __   __   ___ \n  |__  |__/ |    | |__) /__` |__  \n  |___ |  \ |___ | |    .__/ |___ \n\n","bold yellow",boolColor)
+    printcolor("\n   ___              __   __   ___ \n  |__  |__/ |    | |__) /__` |__  \n  |___ |  \ |___ | |    .__/ |___ ","bold yellow",boolColor)
+    printcolor("[v1-8]\n","yellow",boolColor)
 
 
 #*********************************************************************

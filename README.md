@@ -1,12 +1,12 @@
-![eklipse logo](http://163.172.45.124/uploads/eklipseHeader.png)
+![eklipse logo](http://163.172.45.124/share/eKLIPse/eklipseHeader.png)
 
 ##
 
 ### Graphical User Interface (Windows portable version)
 
-A graphical user interface developped in Qt is available [here](http://163.172.45.124/uploads/eKLIPse_beta-0-2_winPortable.zip) (with GUI tutorial).
+A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/eKLIPse_beta-0-2_winPortable.zip) (with GUI tutorial).
 
-![eklipse GUI](http://163.172.45.124/uploads/eKLIPse_GUI.png)
+![eklipse GUI](http://163.172.45.124/share/eKLIPse/eKLIPse_GUI.png)
 
 ##
 
@@ -91,7 +91,7 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 - "eKLIPse_genes.csv" summarizing cumulative deletion per mtDNA gene.
 - circos plot representation for each input alignement. A example is shown below.
 
-![eklipse circos legend](http://163.172.45.124/uploads/eklipse_circos_legend.png)
+![eklipse circos legend](http://163.172.45.124/share/eKLIPse/eklipse_circos_legend.png)
 
 
 ##

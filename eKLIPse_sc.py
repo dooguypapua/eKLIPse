@@ -250,7 +250,7 @@ def deletionPrediction(titleBam,dicoInit,lstError):
                         dicoDel[delName]['freqR'] = (nb_sc_reads_R/nb_reads_R) * (nb_blast_R/nb_sc_fasta_R) *100.0
                         dicoDel[delName]['depthF'] = nb_reads_F
                         dicoDel[delName]['depthR'] = nb_reads_R
-                except: del(dicoDel[delName])
+            except: del(dicoDel[delName])
 
         #***** CUMULATIVE Frequency *****#
         dicoCumulFreq = {}

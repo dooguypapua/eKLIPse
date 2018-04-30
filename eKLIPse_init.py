@@ -32,7 +32,7 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
                 'dicoGbk':{},\
                 'windows':False,\
                 'lstTitleBam':[],\
-                'minQ':20, 'SCsize':25, 'MappedPart':20,\
+                'minQ':20, 'minlen':100, 'SCsize':25, 'MappedPart':20,\
                 'downCov':500000, 'delShift':5,\
                 'mitosize':1000, 'minblast':1, 'bilateral':True,\
                 'blastIdThreshold':80, 'blastCovThreshold':70,'blastGapOpen':0, 'blastGapExt':2,\
@@ -126,6 +126,10 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
         elif argv[i]=="-minq": # The minimum read quality to consider
             if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-minQ\" integer expected")
             else: dicoInit["minQ"] = int(argv[i+1])
+        # Min Read length
+        elif argv[i]=="-minlen":
+            if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-minlen\" integer expected")
+            else: dicoInit["minlen"] = int(argv[i+1])
         # SoftClipping analysis threshold     
         elif argv[i]=="-scsize": # The minimum length of softclip to keep
             if string_to_num(argv[i+1])!="int": lstErrorDisplay.append("\"-SC_size\" integer expected")
@@ -262,6 +266,7 @@ def manual_display(lst_error,dicoInit,spinner):
     printcolor("    -mapsize      <int>  : Upstream mapping length                [20]\n","white",dicoInit['boolColor'])
     printcolor("    -downcov      <int>  : Downsampling reads number              [500000] (0=disable)\n","white",dicoInit['boolColor'])
     printcolor("    -minq         <int>  : Read quality threshold                 [20]\n","white",dicoInit['boolColor'])
+    printcolor("    -minlen       <int>  : Read length threshold                  [100]\n","white",dicoInit['boolColor'])
     printcolor("    -shift        <int>  : Breakpoint BLAST shift length          [5]\n","white",dicoInit['boolColor'])
     printcolor("    -minblast     <int>  : Minimal number of BLAST per breakpoint [1]\n","white",dicoInit['boolColor'])
     printcolor("    -bilateral    <bool> : Filter non-bilateral BLAST deletions   [True]\n","white",dicoInit['boolColor'])
@@ -291,37 +296,37 @@ def manual_display(lst_error,dicoInit,spinner):
 def config_display(dicoInit):
     print "\n"
     format_time = time.strftime('%d/%m/%y %H:%M:%S',time.localtime(dicoInit['startTime']))
-    printcolor("    Start time         : ","bold white",dicoInit['boolColor'])
+    printcolor("    Start time           : ","bold white",dicoInit['boolColor'])
     printcolor(format_time+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Input file path    : ","bold white",dicoInit['boolColor'])
+    printcolor("    Input file path      : ","bold white",dicoInit['boolColor'])
     printcolor(dicoInit['pathInput']+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Reference          : ","bold white",dicoInit['boolColor'])
+    printcolor("    Reference            : ","bold white",dicoInit['boolColor'])
     printcolor(dicoInit['pathGbkRef']+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Output folder      : ","bold white",dicoInit['boolColor'])
+    printcolor("    Output folder        : ","bold white",dicoInit['boolColor'])
     printcolor(dicoInit['pathOutputDir']+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Temporary folder   : ","bold white",dicoInit['boolColor'])
+    printcolor("    Temporary folder     : ","bold white",dicoInit['boolColor'])
     printcolor(dicoInit['pathTmpDir']+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Read threshold     : ","bold white",dicoInit['boolColor'])
-    printcolor("minQ="+str(dicoInit['minQ'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    SC threshold       : ","bold white",dicoInit['boolColor'])
+    printcolor("    Read threshold       : ","bold white",dicoInit['boolColor'])
+    printcolor("minQ="+str(dicoInit['minQ'])+" | minlen="+str(dicoInit['minlen'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
+    printcolor("    SC threshold         : ","bold white",dicoInit['boolColor'])
     printcolor("SCsize="+str(dicoInit['SCsize'])+" | MappedPart="+str(dicoInit["MappedPart"])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Deletion shift     : ","bold white",dicoInit['boolColor'])
+    printcolor("    Deletion shift       : ","bold white",dicoInit['boolColor'])
     printcolor(str(dicoInit['delShift'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Minimal mito size  : ","bold white",dicoInit['boolColor'])
+    printcolor("    Min mito size        : ","bold white",dicoInit['boolColor'])
     printcolor(str(dicoInit['mitosize'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Minimal BLAST per breakpoint  : ","bold white",dicoInit['boolColor'])
+    printcolor("    Min breakpoint BLAST : ","bold white",dicoInit['boolColor'])
     printcolor(str(dicoInit['minblast'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Filter non-bilateral BLAST    : ","bold white",dicoInit['boolColor'])
+    printcolor("    Filter non-bilateral : ","bold white",dicoInit['boolColor'])
     printcolor(str(dicoInit['bilateral'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    BLAST thresholds   : ","bold white",dicoInit['boolColor'])
-    printcolor("blast_id="+str(dicoInit['blastIdThreshold'])+" | blast_cov="+str(dicoInit['blastCovThreshold'])+" | blast_gapopen="+str(dicoInit['blastGapOpen'])+" | blast_gapext="+str(dicoInit['blastGapExt'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Downsampling       : ","bold white",dicoInit['boolColor'])
+    printcolor("    BLAST thresholds     : ","bold white",dicoInit['boolColor'])
+    printcolor("id="+str(dicoInit['blastIdThreshold'])+" | cov="+str(dicoInit['blastCovThreshold'])+" | gapopen="+str(dicoInit['blastGapOpen'])+" | gapext="+str(dicoInit['blastGapExt'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
+    printcolor("    Downsampling         : ","bold white",dicoInit['boolColor'])
     if dicoInit['downCov']==0 : printcolor("none\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
     else : printcolor(str(dicoInit['downCov'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
-    printcolor("    Threads number     : ","bold white",dicoInit['boolColor'])
+    printcolor("    Threads number       : ","bold white",dicoInit['boolColor'])
     printcolor(str(dicoInit['nbThread'])+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
     bamTable = tabulate_bam(dicoInit['dicoBam'],dicoInit['lstTitleBam'],).replace("\n","\n      ")
-    printcolor("    Input alignments   : ","bold white",dicoInit['boolColor'])
+    printcolor("    Input alignments     : ","bold white",dicoInit['boolColor'])
     printcolor(str(len(dicoInit['dicoBam']))+"\n","white",dicoInit['boolColor'])
     printcolor("      "+bamTable+"\n","white",dicoInit['boolColor']) ; time.sleep(0.1)
 

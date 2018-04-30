@@ -68,6 +68,7 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 -mapsize      <int>  : Upstream mapping length                [20]
 -downcov      <int>  : Downsampling reads number              [500000] (0=disable)
 -minq         <int>  : Read quality threshold                 [20]
+-minlen       <int>  : Read length threshold                  [100]
 -shift        <int>  : Breakpoint BLAST shift length          [5]
 -minblast     <int>  : Minimal number of BLAST per breakpoint [1]
 -bilateral    <bool> : Filter non-bilateral BLAST deletions   [True]

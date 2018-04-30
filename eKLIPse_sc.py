@@ -334,7 +334,7 @@ def create_results_table(dicoInit,lstError):
                 delPercent = ((dicoDel[deletion]['freqF']+dicoDel[deletion]['freqR'])/2.0)
                 ToWrite = "\""+titleBam+"\";\""+str(start)+"\";\""+str(end)+"\";\""+str(delPercent).replace(".",",")+\
                           "\";\""+str(dicoDel[deletion]['freqF']).replace(".",",")+"\";\""+str(dicoDel[deletion]['freqR']).replace(".",",")+\
-                          "\";\""+str(dicoDel[deletion]['scrF']['nbBlast'])+"\";\""+str(dicoDel[deletion]['scrR']['nbBlast'])+"\";\""+str(dicoDel[delName]['depthF'])+"\";\""+str(dicoDel[delName]['depthR'])+"\";\""+repetition+"\"\n"
+                          "\";\""+str(dicoDel[deletion]['scrF']['nbBlast'])+"\";\""+str(dicoDel[deletion]['scrR']['nbBlast'])+"\";\""+str(dicoDel[deletion]['depthF'])+"\";\""+str(dicoDel[deletion]['depthR'])+"\";\""+repetition+"\"\n"
                 OUTDEL.write(ToWrite)
 
         #***** GENES max per genes hashtable *****#

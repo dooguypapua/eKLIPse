@@ -158,26 +158,27 @@ def deletionPrediction(titleBam,dicoInit,lstError):
         for delName in dicoDel.keys():
             start = int(split(delName,"-")[0])
             end = int(split(delName,"-")[1])
+            dico_index = len(dico_shift_del)
+            dico_shift_del[dico_index] = [delName]
             for delName2 in dicoDel.keys():
                 if delName!=delName2:
                     start2 = int(split(delName2,"-")[0])
                     end2 = int(split(delName2,"-")[1])
                     # Same deletion start => shift end
                     if (start==start2 and (abs(end-end2)<=dicoInit["delShift"])) or (end==end2 and (abs(start-start2)<=dicoInit["delShift"])):
-                        dico_shift_del[len(dico_shift_del)] = set([delName,delName2])
+                        dico_shift_del[dico_index].append(delName2)
         # Merge set
         for key in dico_shift_del.keys():
             for key2 in dico_shift_del.keys():
                 if key!=key2:
-                    if len(dico_shift_del[key].intersection(dico_shift_del[key2]))>0:
-                        dico_shift_del[key] = dico_shift_del[key].union(dico_shift_del[key2])
+                    if len(set(dico_shift_del[key]).intersection(set(dico_shift_del[key2])))>0:
+                        dico_shift_del[key] = set(dico_shift_del[key]).union(set(dico_shift_del[key2]))
                         dico_shift_del[key2] = set()
         # Merge to one maximal blast position
         for key in dico_shift_del.keys():
             if len(dico_shift_del[key])>0:
                 nbBlast_F = 0 ; nbBlast_R = 0
                 lst_start_sc_fasta = [] ; lst_end_sc_fasta = []
-                sum_start_sc_fasta = 0 ; sum_end_sc_fasta = 0
                 maxBlast_F = 0 ; maxBlast_R = 0
                 maxBlast_start = "" ; maxBlast_end = ""
                 limit_max_start = -1 ; limit_max_end = -1
@@ -210,47 +211,55 @@ def deletionPrediction(titleBam,dicoInit,lstError):
                     # Del entry
                     try : del(dicoDel[delName])
                     except: pass
+                if maxBlast_start=="": maxBlast_start = split(delName,"-")[0]
+                if maxBlast_end=="": maxBlast_end = split(delName,"-")[1]
                 dicoDel[maxBlast_start+"-"+maxBlast_end] = { 'scrF':{'nbBlast':nbBlast_F,'limit':limit_max_start,'initial_SCposRead':initial_SCposRead_F},\
                                                              'scrR':{'nbBlast':nbBlast_R,'limit':limit_max_end,'initial_SCposRead':initial_SCposRead_R},\
-                                                             'sum_start_sc_fasta':sum_start_sc_fasta, 'sum_end_sc_fasta':sum_end_sc_fasta,\
                                                              'freqF':0.0, 'freqR':0.0 }
 
         #***** COMPUTE Frequencies *****#
         for delName in dicoDel.keys():
-            try: 
-                # FILTERs 
-                if dicoInit["bilateral"]==True and (dicoDel[delName]['scrF']['nbBlast']<dicoInit["minblast"] or dicoDel[delName]['scrR']['nbBlast']<dicoInit["minblast"]): del(dicoDel[delName])
-                elif dicoInit["bilateral"]==False and dicoDel[delName]['scrF']['nbBlast']<dicoInit["minblast"] and dicoDel[delName]['scrR']['nbBlast']<dicoInit["minblast"]: del(dicoDel[delName])
-                # Compute frequency
-                else:
-                    start = int(split(delName,"-")[0])
-                    end = int(split(delName,"-")[1])
-                    nb_blast_F = float(dicoDel[delName]['scrF']['nbBlast'])
-                    nb_blast_R = float(dicoDel[delName]['scrR']['nbBlast'])
-                    nb_sc_fasta_F = 0 ; set_sc_fasta_pos_F = set()
-                    nb_sc_fasta_R = 0 ; set_sc_fasta_pos_R = set()
-                    # Check max total and soft-clipped reads in +-shifted pos
-                    lst_nb_sc_reads_F = []
-                    for init_pos in set(dicoDel[delName]['scrF']['initial_SCposRead']):
-                        for i in range(init_pos-dicoInit["delShift"],init_pos+dicoInit["delShift"]+1,1):
-                            lst_nb_sc_reads_F.append(dicoBam[str(i)]['nb_sc_reads_F'])
-                            if not i in set_sc_fasta_pos_F : nb_sc_fasta_F+=dicoBam[str(i)]['nb_sc_fasta_F'] ; set_sc_fasta_pos_F.add(i)
-                    lst_nb_sc_reads_R = []
-                    for init_pos in set(dicoDel[delName]['scrR']['initial_SCposRead']):
-                        for i in range(init_pos-dicoInit["delShift"],init_pos+dicoInit["delShift"]+1,1):
-                            lst_nb_sc_reads_R.append(dicoBam[str(i)]['nb_sc_reads_R'])
-                            if not i in set_sc_fasta_pos_R : nb_sc_fasta_R+=dicoBam[str(i)]['nb_sc_fasta_R'] ; set_sc_fasta_pos_R.add(i)
-                        max_occ_start = max(dicoDel[delName]['scrF']['initial_SCposRead'],key=dicoDel[delName]['scrF']['initial_SCposRead'].count) # max() arg is an empty sequence
-                        max_occ_end = max(dicoDel[delName]['scrR']['initial_SCposRead'],key=dicoDel[delName]['scrR']['initial_SCposRead'].count)
-                        nb_reads_F = float(dicoBam[str(max_occ_start)]['nb_reads_F'])
-                        nb_reads_R = float(dicoBam[str(max_occ_end)]['nb_reads_R'])
-                        nb_sc_reads_F = float(max(lst_nb_sc_reads_F))
-                        nb_sc_reads_R = float(max(lst_nb_sc_reads_R))
-                        dicoDel[delName]['freqF'] = (nb_sc_reads_F/nb_reads_F) * (nb_blast_F/nb_sc_fasta_F) *100.0
-                        dicoDel[delName]['freqR'] = (nb_sc_reads_R/nb_reads_R) * (nb_blast_R/nb_sc_fasta_R) *100.0
-                        dicoDel[delName]['depthF'] = nb_reads_F
-                        dicoDel[delName]['depthR'] = nb_reads_R
-            except: del(dicoDel[delName])
+            # FILTERs 
+            if dicoInit["bilateral"]==True and (dicoDel[delName]['scrF']['nbBlast']<dicoInit["minblast"] or dicoDel[delName]['scrR']['nbBlast']<dicoInit["minblast"]): del(dicoDel[delName])
+            elif dicoInit["bilateral"]==False and dicoDel[delName]['scrF']['nbBlast']<dicoInit["minblast"] and dicoDel[delName]['scrR']['nbBlast']<dicoInit["minblast"]: del(dicoDel[delName])
+            # Compute frequency
+            else:
+                start = int(split(delName,"-")[0])
+                end = int(split(delName,"-")[1])
+                nb_blast_F = float(dicoDel[delName]['scrF']['nbBlast'])
+                nb_blast_R = float(dicoDel[delName]['scrR']['nbBlast'])
+                nb_sc_fasta_F = 0 ; set_sc_fasta_pos_F = set()
+                nb_sc_fasta_R = 0 ; set_sc_fasta_pos_R = set()
+                if len(dicoDel[delName]['scrF']['initial_SCposRead'])==0: dicoDel[delName]['scrF']['initial_SCposRead'] = [start]
+                if len(dicoDel[delName]['scrR']['initial_SCposRead'])==0: dicoDel[delName]['scrR']['initial_SCposRead'] = [end]
+                # Check max total and soft-clipped reads in +-shifted pos
+                lst_nb_sc_reads_F = []
+                for init_pos in set(dicoDel[delName]['scrF']['initial_SCposRead']):
+                    for i in range(init_pos-dicoInit["delShift"],init_pos+dicoInit["delShift"]+1,1):
+                        lst_nb_sc_reads_F.append(dicoBam[str(i)]['nb_sc_reads_F'])
+                        if not i in set_sc_fasta_pos_F : nb_sc_fasta_F+=dicoBam[str(i)]['nb_sc_fasta_F'] ; set_sc_fasta_pos_F.add(i)
+                lst_nb_sc_reads_R = []
+                for init_pos in set(dicoDel[delName]['scrR']['initial_SCposRead']):
+                    for i in range(init_pos-dicoInit["delShift"],init_pos+dicoInit["delShift"]+1,1):
+                        lst_nb_sc_reads_R.append(dicoBam[str(i)]['nb_sc_reads_R'])
+                        if not i in set_sc_fasta_pos_R : nb_sc_fasta_R+=dicoBam[str(i)]['nb_sc_fasta_R'] ; set_sc_fasta_pos_R.add(i)
+                    # Max occurence start/end
+                    max_occ_start = max(dicoDel[delName]['scrF']['initial_SCposRead'],key=dicoDel[delName]['scrF']['initial_SCposRead'].count)
+                    max_occ_end = max(dicoDel[delName]['scrR']['initial_SCposRead'],key=dicoDel[delName]['scrR']['initial_SCposRead'].count)
+                    nb_reads_F = float(dicoBam[str(max_occ_start)]['nb_reads_F'])
+                    nb_reads_R = float(dicoBam[str(max_occ_end)]['nb_reads_R'])
+                    # Max number of sc reads
+                    if len(lst_nb_sc_reads_F)==0: nb_sc_reads_F = 0
+                    else: nb_sc_reads_F = float(max(lst_nb_sc_reads_F))
+                    if len(lst_nb_sc_reads_R)==0: nb_sc_reads_R = 0
+                    else: nb_sc_reads_R = float(max(lst_nb_sc_reads_R))
+                    # Frequencies
+                    if nb_sc_fasta_F==0: dicoDel[delName]['freqF'] = 0.0
+                    else: dicoDel[delName]['freqF'] = (nb_sc_reads_F/nb_reads_F) * (nb_blast_F/nb_sc_fasta_F) *100.0
+                    if nb_sc_fasta_R==0: dicoDel[delName]['freqR'] = 0.0
+                    else: dicoDel[delName]['freqR'] = (nb_sc_reads_R/nb_reads_R) * (nb_blast_R/nb_sc_fasta_R) *100.0
+                    dicoDel[delName]['depthF'] = nb_reads_F
+                    dicoDel[delName]['depthR'] = nb_reads_R
 
         #***** CUMULATIVE Frequency *****#
         dicoCumulFreq = {}

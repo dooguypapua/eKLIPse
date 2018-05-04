@@ -107,7 +107,7 @@ else: launch_threads_qt(dicoInit,"Create circos plots ","circosPlot","ThreadCirc
 #  [ * ] -  CLEANING & DISPLAY
 #---------------------------------------------------------------------
 #*********************************************************************
-# shutil.rmtree(dicoInit['pathTmpDir'])
+shutil.rmtree(dicoInit['pathTmpDir'])
 printcolor("\n  eKLIPse Completed\n",'bold green',boolColor)
 printcolor("    End time           : ","bold green",boolColor)
 printcolor(time.strftime('%d/%m/%y %H:%M:%S',time.localtime(time.time()))+"\n","green",boolColor)

@@ -95,7 +95,9 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
                             if feature.qualifiers['nomenclature'][0].lower().__contains__("trna"): geneType = "trna"
                             elif feature.qualifiers['nomenclature'][0].lower().__contains__("rna"): geneType = "rrna"
                             else: geneType = "protein"
-                            dicoInit["dicoGbk"]['lstGene'].append([feature.qualifiers['gene'][0],int(feature.location.start)+1,int(feature.location.end),geneType])
+                            try: name = split(split(feature.qualifiers['nomenclature'][0],"|")[0],":")[1].replace(" ","")
+                            except: name = feature.qualifiers['gene'][0]
+                            dicoInit["dicoGbk"]['lstGene'].append([name,int(feature.location.start)+1,int(feature.location.end),geneType])
             if len(dicoInit["dicoGbk"])==0: lstErrorDisplay.append("Cannot Read Reference GBK file \""+argv[i+1]+"\"")
         elif argv[i]=="--test":
             prev_arg = "--"

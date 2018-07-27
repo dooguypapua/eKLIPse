@@ -106,7 +106,12 @@ dooguy@tuta.io
 ### License
 eKLIPse is available under the GNU Affero General Public License v3.0.
 
-Submitted article: [Goudenège et al.] eKLIPse: A sensitive tool for the detection and quantification of mitochondrial DNA deletions from next generation sequencing data
+Please cite (submitted article)
+
+Goudenège et al.
+
+eKLIPse: A sensitive tool for the detection and quantification of mitochondrial DNA deletions from next generation sequencing data
+
 
 
 

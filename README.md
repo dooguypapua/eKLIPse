@@ -6,7 +6,7 @@
 
 A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/eKLIPse_winPortable_0.2.zip).
 
-When you have downloaded the zip file, just unzip and double-click 'eKLIPse.exe'.
+After download, just unzip and double-click 'eKLIPse.exe'.
 
 ![eklipse GUI](http://163.172.45.124/share/eKLIPse/eKLIPse_GUI.png)
 

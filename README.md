@@ -4,7 +4,9 @@
 
 ### Graphical User Interface (Windows portable version)
 
-A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/eKLIPse_beta-0-2_winPortable.zip) (with GUI tutorial).
+A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/eKLIPse_beta-0-2_winPortable.zip).
+
+When you have downloaded the zip file, just unzip and double-click 'eKLIPse.exe'.
 
 ![eklipse GUI](http://163.172.45.124/share/eKLIPse/eKLIPse_GUI.png)
 
@@ -45,7 +47,7 @@ python eKLIPse.py -in <INPUT file path> -ref <GBK file path> [OPTIONS]
 ```
 
 ##### -in
-Input alignments could be in BAM or SAM format (require header). Single and paired-end sequencing are accepted.
+eKLIPse accepts alignments in BAM or SAM format (require header) for both single and paired-end sequencing data.
 
 The input file is a simple tabulated text file like:
 
@@ -55,7 +57,7 @@ path_bam2 <tab\> title2
 
 
 ##### -ref
-eKLIPse accept any mtDNA reference genome in Genbank format. 
+eKLIPse accepts any mtDNA reference genome in Genbank format. 
 
 rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are available in "/data"
 
@@ -66,20 +68,20 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 -tmp          <str>  : Temporary directory path               [/tmp]
 -scsize       <int>  : Soft-clipping minimal length           [25]
 -mapsize      <int>  : Upstream mapping length                [20]
--downcov      <int>  : Downsampling reads number              [500000] (0=disable)
+-downcov      <int>  : Downsampling read number               [500000] (0=disable)
 -minq         <int>  : Read quality threshold                 [20]
 -minlen       <int>  : Read length threshold                  [100]
--shift        <int>  : Breakpoint BLAST shift length          [5]
+-shift        <int>  : Breakpoint sliding-window size         [5]
 -minblast     <int>  : Minimal number of BLAST per breakpoint [1]
--bilateral    <bool> : Filter non-bilateral BLAST deletions   [True]
--mitosize     <int>  : Minimal resulting mitochondria size    [1000]
+-bilateral    <bool> : Filter unidirectional BLAST            [True]
+-mitosize     <int>  : Remove deleted mtDNA less than         [1000]
 -id           <int>  : BLAST %identity threshold              [80]
 -cov          <int>  : BLAST %coverage threshold              [70]
 -gapopen      <int>  : BLAST cost to open a gap               [0:proton, 5:illumina]
 -gapext       <int>  : BLAST cost to extend a gap             [2]
--thread       <int>  : Number of thread to use                [2]
+-thread       <int>  : Thread number                          [2]
 -samtools     <str>  : samtools bin path                      [$PATH]
--blastn       <str>  : BLASTn bin path                        [$PATH]
+-blastn       <str>  : BLASTN bin path                        [$PATH]
 -makeblastdb  <str>  : makeblastdb bin path                   [$PATH]
 -circos       <str>  : circos bin path                        [$PATH]
 --test               : eKLIPse test
@@ -88,11 +90,11 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 
 #### eKLIPse outputs
 
-- "eKLIPse_deletions.csv" containing all predicted deletions results
-- "eKLIPse_genes.csv" summarizing cumulative deletion per mtDNA gene.
-- circos plot representation for each input alignement. A example is shown below.
+- "eKLIPse_deletions.csv" containing all predicted deletions
+- "eKLIPse_genes.csv" summarizing cumulated deletions per mtDNA gene.
+- circos representation per input alignement. An example is shown below.
 
-![eklipse circos legend](http://163.172.45.124/share/eKLIPse/eklipse_circos_legend.png)
+![eklipse circos legend](http://163.172.45.124/share/eKLIPse/eKLIPse_fig2.png)
 
 
 ##
@@ -104,6 +106,7 @@ dooguy@tuta.io
 ### License
 eKLIPse is available under the GNU Affero General Public License v3.0.
 
-Please cite: .......
+Submitted article: [Goudenège et al.] eKLIPse: A sensitive tool for the detection and quantification of mitochondrial DNA deletions from next generation sequencing data
+
 
 

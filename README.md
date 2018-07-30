@@ -4,7 +4,7 @@
 
 ### Graphical User Interface (Windows portable version)
 
-A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/eKLIPse_winPortable_0.2.zip).
+A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_winPortable_v0.2.zip).
 
 After download, just unzip and double-click 'eKLIPse.exe'.
 
@@ -20,7 +20,7 @@ Follow instruction [here](https://docs.docker.com/get-started/part2/#build-the-a
 
 ##
 
-### CLI (Linux)
+### Linux
 
 #### Requirements
 Please install the following modules & tools :
@@ -30,6 +30,16 @@ Please install the following modules & tools :
 - [samtools](https://github.com/samtools/samtools)
 - [blastn & makeblastdb](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) (>=2.3.0+)
 - [circos](http://circos.ca/software/download/)
+
+
+### Graphical User Interface 
+
+A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_unix_v1-0.zip).
+
+- unzip Qt_eKLIPse_unix_v1-0.zip
+- cd Qt_eKLIPse_unix_v1-0.zip
+- chmod a+x eKLIPse
+- ./eKLIPse
 
 
 #### Testing eKLIPse

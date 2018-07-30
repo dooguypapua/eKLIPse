@@ -32,7 +32,7 @@ Please install the following modules & tools :
 - [circos](http://circos.ca/software/download/)
 
 
-### Graphical User Interface 
+#### Graphical User Interface 
 
 A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_unix_v1-0.zip).
 

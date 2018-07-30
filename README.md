@@ -4,7 +4,7 @@
 
 ### Graphical User Interface (Windows portable version)
 
-A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_winPortable_v0.2.zip).
+A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_winPortable_v1-0.zip).
 
 After download, just unzip and double-click 'eKLIPse.exe'.
 

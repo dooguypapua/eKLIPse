@@ -42,7 +42,7 @@ A graphical user interface developped in Qt is available [here](http://163.172.4
 - ./eKLIPse
 
 
-#### Testing eKLIPse
+#### Testing CLI eKLIPse
 
 ```markdown
 python eKLIPse.py --test
@@ -50,7 +50,7 @@ python eKLIPse.py --test
 *add "-samtools", "-blastn", "-makeblastdb" and "-circos" options for executable files not in $PATH*
 
 
-#### Running eKLIPse
+#### Running CLI eKLIPse
 
 ```markdown
 python eKLIPse.py -in <INPUT file path> -ref <GBK file path> [OPTIONS]
@@ -98,7 +98,7 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 --nocolor            : Disable output colors
 ```
 
-#### eKLIPse outputs
+### eKLIPse outputs
 
 - "eKLIPse_deletions.csv" containing all predicted deletions
 - "eKLIPse_genes.csv" summarizing cumulated deletions per mtDNA gene.

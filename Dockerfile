@@ -1,7 +1,7 @@
 # Base build, inspired by
 # https://github.com/crosbymichael/python-docker/blob/master/Dockerfile
 FROM dennishazelett/circos
-MAINTAINER David Goudeneige, dooguy@tuta.io
+MAINTAINER David Goudenege, dooguy@tuta.io
 
 RUN apt-get update \
     && apt-get upgrade -y \

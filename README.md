@@ -1,79 +1,74 @@
 ![eklipse logo](http://163.172.45.124/share/eKLIPse/eklipseHeader.png)
 
-##
 
-### Graphical User Interface (Windows portable version)
+<b>eKLIPse is a sensitive and specific tool allowing the detection and quantification of large mtDNA rearrangements.</b><br/>
+Based on soft-clipping it provides the precise breakpoint positions and the cumulated percentage of mtDNA rearrangements at a given gene location with a high detection sensitivity.<br/>
+Both single and paired-end (mtDNA, WES, WGS) data are accepted.<br/>
+eKLIPse requires two types of input, the BAM or SAM alignment files (with header) and the corresponding mitochondrial genome (GenBank format).<br/>
+<b>Alignment must contains soft-clipping informations (see your aligner options).</b><br/>
+eKLIPSE is available either as a script to be integrated in a pipeline, or as user friendly graphical interface.<br/>
+<span style="color:red">Like others CNV tools, eKLIPse performance will depend on your sequencing and mapping steps.</span><br/>
 
-A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_winPortable_v1-0.zip).
 
-After download, just unzip and double-click 'eKLIPse.exe'.
+---------------------------------------
 
+## Graphical User Interface (Qt)
 ![eklipse GUI](http://163.172.45.124/share/eKLIPse/eKLIPse_GUI.png)
 
+#### Windows Deployment
+- download lastest version [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_winPortable_v1-0.zip).<br/>
+- unzip ZIP file.<br/>
+- launch 'eKLIPse.exe'
 ##
 
-### Docker image
-
-A docker image is also available.
-
-Follow instruction [here](https://docs.docker.com/get-started/part2/#build-the-app)
-
-##
-
-### Linux
-
-#### Requirements
-Please install the following modules & tools :
-- python 2.7
-- [biopython](https://github.com/biopython/biopython)
-- [tqdm](https://github.com/tqdm/tqdm)
-- [samtools](https://github.com/samtools/samtools)
-- [blastn & makeblastdb](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) (>=2.3.0+)
-- [circos](http://circos.ca/software/download/)
-
-
-#### Graphical User Interface 
-
-A graphical user interface developped in Qt is available [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_unix_v1-0.zip).
-
+#### Linux Installation
+- download lastest version [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_unix_v1-0.zip)).<br/>
 - unzip Qt_eKLIPse_unix_v1-0.zip
 - cd Qt_eKLIPse_unix_v1-0.zip
 - chmod a+x eKLIPse
 - ./eKLIPse
+##
+
+#### Testing
+Two reduced alignments files are provided with the archive file.<br/>
+Please select "TEST" on the "Launch Analysis" windows before clicking "START".
+<br/><br/>
+
+---------------------------------------
+
+## Command Line Interface
+
+#### Docker
+A docker image is also available. Follow building instruction [here](https://docs.docker.com/get-started/part2/#build-the-app)
+##
+
+#### Linux
+
+##### Requirements
+Please install the following modules & tools:<br/>
+- python 2.7<br/>
+- [biopython](https://github.com/biopython/biopython)<br/>
+- [tqdm](https://github.com/tqdm/tqdm)<br/>
+- [samtools](https://github.com/samtools/samtools)<br/>
+- [blastn & makeblastdb](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) (>=2.3.0+)<br/>
+- [circos](http://circos.ca/software/download/)<br/>
 
 
-#### Testing CLI eKLIPse
+##### Testing
 
 ```markdown
 python eKLIPse.py --test
+
+(*add "-samtools", "-blastn", "-makeblastdb" and "-circos" options if not in $PATH)
 ```
-*add "-samtools", "-blastn", "-makeblastdb" and "-circos" options for executable files not in $PATH*
 
 
-#### Running CLI eKLIPse
+##### Running
 
 ```markdown
 python eKLIPse.py -in <INPUT file path> -ref <GBK file path> [OPTIONS]
-```
 
-##### -in
-eKLIPse accepts alignments in BAM or SAM format (require header) for both single and paired-end sequencing data.
-
-The input file is a simple tabulated text file like:
-
-path_bam1 <tab\> title1
-
-path_bam2 <tab\> title2
-
-
-##### -ref
-eKLIPse accepts any mtDNA reference genome in Genbank format. 
-
-rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are available in "/data"
-
-
-##### [OPTIONS]
-```markdown
+[OPTIONS]
 -out          <str>  : Output directory path                  [current]
 -tmp          <str>  : Temporary directory path               [/tmp]
 -scsize       <int>  : Soft-clipping minimal length           [25]
@@ -98,7 +93,58 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 --nocolor            : Disable output colors
 ```
 
-### eKLIPse outputs
+---------------------------------------
+
+## Parameters
+
+##### Input file (-in)
+eKLIPse accepts alignments in BAM or SAM format (require header) for both single and paired-end sequencing data.<br/>
+The input file is a simple tabulated text file as follow:<br/>
+<table><tbody><tr><td>path_bam</td><td>title1</td></tr><tr><td>path_bam2</td><td>title2</td></tr></tbody></table>
+##
+
+##### mtDNA reference (-ref)
+eKLIPse accepts any mtDNA reference genome in Genbank format.<br/>
+rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are provided in "/data"
+##
+
+##### Downsampling (-downcov)
+In order to reduce execution time, a downsampling option is available.<br/>
+For singles deletions with low mutant load or multiples deletions, we advise to not downsample "-downcov 0".<br/>
+The obtained reads number must match to a sufficient mitochondrail genome coverage.
+##
+
+##### Sequencing & Alignment (-minq / -minlen)
+According to your sequencing technology and library, you can adjust the minimum read length value (-minlen).<br/>
+You can adjust minimum read quality (-minq), for example to consider multiple hits for a same read which reduce the minq.
+##
+
+##### Soft-clipping (-minq / -minlen)
+For short read data, we advise to reduce minimal soft-clipping length (-scsize) and upstream mapping length (-mapsize).<br/>
+For example, with 100bp reads, you could use "-scsize 15" and "-mapsize 10".<br/>
+Breakpoint sliding-window size could be modify if you expect a high number of homopolymers.
+##
+
+##### BLASTn (-id / -cov / -gapopen / -gapext )
+BLASTn thresholds are mostly sequencing technology dependent.<br/>
+Then according to your sequencing quality you could increase or decrease identity and coverage thresholds (-id / -cov).<br/>
+Illumina is known to generate fewer errors and can therefore be more stringent on gap thresholds (-gapopen / -gapext).<br/>
+For example, with illumina reads, you could use "-gapopen 5" and "-gapext 2".
+##
+
+##### Filtering (-minblast / -bilateral / -mitosize)
+According to your sequencing depth, quality and required stringency, you could modify filters.<br/>
+Increasing the minimum number of BLAST per breakpoint increase the specificity but decrease the sensitivity (-minblast)<br/>
+By default, eKLIPse filter out deleted mtDNA with a length under 1000bp.<br/>
+But for example, if you're looking for sublimons you could reduce this length to 100bp.<br/>
+eKLIPse is based on th search of biderectionnal BLAST linking 5' breakpoint and 3' breakpoint.<br/>
+It is therefore not recommended to disable this filter ("-bilateral False").<br/>
+
+
+---------------------------------------
+
+
+## Outputs
 
 - "eKLIPse_deletions.csv" containing all predicted deletions
 - "eKLIPse_genes.csv" summarizing cumulated deletions per mtDNA gene.
@@ -120,10 +166,7 @@ eKLIPse is available under the GNU Affero General Public License v3.0.
 ### Reference
 Please cite (submitted article)
 
-Goudenège et al.
-
-eKLIPse: A sensitive tool for the detection and quantification of mitochondrial DNA deletions from next generation sequencing data
-
+eKLIPse: A sensitive tool for the detection and quantification of mitochondrial DNA deletions from next generation sequencing data.
 
 
 

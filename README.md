@@ -13,7 +13,6 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 ---------------------------------------
 
 ## Graphical User Interface (Qt)
-![eklipse GUI](http://163.172.45.124/share/eKLIPse/eKLIPse_GUI.png)
 
 #### Windows Deployment
 - download lastest version [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_winPortable_v1-0.zip).<br/>
@@ -29,9 +28,29 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 - ./eKLIPse
 ##
 
+#### Running
+##### Start
+![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_home.png){ width=30% }<br/>
+To start analysis, simply click "START".<br/>
+(you can change application colors by clicking on bottom right colors)<br/><br/>
+##### Launch Analysis
+![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_select.png)<br/>
+1 - To select your alignment files, click "ADD". If required you can change alignments title by selecting correspunding cell.<br/>
+2 - Select your reference genome. If you choose "Other", browse to your own Genbank file by clicking on the folder icon.<br/>
+3 - To change "results directory", click on the folder icon.<br/>
+4 - To modify "Advanced parameters" click on the expand icon. Please refers to "Parameters" section for further informations.<br/>
+5 - Launch analysis by clicking "START"<br/><br/>
+##### Analysis in progress
+![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_waiting.png)<br/>
+eKLIPse analysis detailed progress can be followed on this window.<br/><br/>
+##### Results
+![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_results.png)<br/>
+Once the analysis is complete, the program automatically opens the results folder.
+##
+
 #### Testing
 Two reduced alignments files are provided with the archive file.<br/>
-Please select "TEST" on the "Launch Analysis" windows before clicking "START".
+Click "TEST" on the "Launch Analysis" windows before clicking "START".
 <br/><br/>
 
 ---------------------------------------

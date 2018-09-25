@@ -165,23 +165,17 @@ It is therefore not recommended to disable this filter ("-bilateral False").<br/
 
 ## Outputs
 
-### eKLIPse_deletions.csv
-File containing all predicted deletions
-<table>
-	<th><td>Title</td><td>5' breakpoint</td><td>3' breakpoint</td><td>Freq</td><td>Freq For</td><td>Freq Rev</td><td>Nb 5' Blast</td><td>Nb 3' Blast</td><td>5' Depth</td><td>3' Depth</td><td>Repetition</td></th>
-	<tr><td>Sample 1</td><td>7337</td><td>14093</td><td>7,59388535767</td><td>8,3785296024</td><td>6,80924111294</td><td>76</td><td>34</td><td>2996.0</td><td>682.0</td><td>none</td></tr>
-	
-</table>
+#### eKLIPse_deletions.csv
+File containing all predicted deletions (bkp=breakpoint).<table style='font-size:80%'><tr><td>title</td><td>5'bkp</td><td>3'bkp</td><td>Freq</td><td>Freq for</td><td>Freq rev</td><td>5' Blast</td><td>3' Blast</td><td>5' Depth</td><td>3' Depth</td><td>Repetition</td></tr><tr><td>file1</td><td>7753</td><td>14601</td><td>3,46</td><td>0,38</td><td>6,55</td><td>2</td><td>23</td><td>1393</td><td>412</td><td>7754-GA-7755 | 14601-GA-14602</td></tr><tr><td>file2</td><td>7981</td><td>14955</td><td>7,40</td><td>4,28</td><td>10,51</td><td>2408</td><td>2506</td><td>7080</td><td>2544</td><td>7982-CT-7983 | 14955-CT-14956</td></tr><tr><td>file3</td><td>460</td><td>5243</td><td>7,24</td><td>13,72</td><td>0,76</td><td>7</td><td>1</td><td>72</td><td>197</td><td>458-CT-459 | 5242-CT-5243</td></tr></table>
+##
 
+#### eKLIPse_genes.csv
+File summarizing cumulated deletions per mtDNA gene.<table style='font-size:80%'><tr><td>Gene</td><td>Start</td><td>End</td><td>Type</td><td>file3</td><td>file4</td><td>file5</td></tr><tr><td>MT-TF</td><td>577</td><td>647</td><td>trna</td><td>0,38</td><td>0,82</td><td>14,03</td></tr><tr><td>MT-RNR1</td><td>648</td><td>1601</td><td>rrna</td><td>2,27</td><td>14,42</td><td>14,03</td></tr><tr><td>MT-TV</td><td>1602</td><td>1670</td><td>trna</td><td>2,27</td><td>14,42</td><td>14,03</td></tr><tr><td>MT-RNR2</td><td>1671</td><td>3229</td><td>rrna</td><td>2,27</td><td>14,78</td><td>14,03</td></tr><tr><td>MT-TL1</td><td>3230</td><td>3304</td><td>trna</td><td>2,27</td><td>14,78</td><td>14,03</td></tr><tr><td>MT-ND1</td><td>3307</td><td>4262</td><td>protein</td><td>2,27</td><td>15,05</td><td>14,03</td></tr></table>
+##
 
-
-
-- "eKLIPse_genes.csv" summarizing cumulated deletions per mtDNA gene.
-- circos representation per input alignement. An example is shown below.
-
+#### circos plot
+One plot is created per input alignement. An example is shown below.<br/><br/>
 ![eklipse circos legend](http://163.172.45.124/share/eKLIPse/eKLIPse_fig2.png)
-
-
 ##
 
 ### Contact

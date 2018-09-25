@@ -165,7 +165,17 @@ It is therefore not recommended to disable this filter ("-bilateral False").<br/
 
 ## Outputs
 
-- "eKLIPse_deletions.csv" containing all predicted deletions
+### eKLIPse_deletions.csv
+File containing all predicted deletions
+<table>
+	<th><td>Title</td><td>5' breakpoint</td><td>3' breakpoint</td><td>Freq</td><td>Freq For</td><td>Freq Rev</td><td>Nb 5' Blast</td><td>Nb 3' Blast</td><td>5' Depth</td><td>3' Depth</td><td>Repetition</td></th>
+	<tr><td>Sample 1</td><td>7337</td><td>14093</td><td>7,59388535767</td><td>8,3785296024</td><td>6,80924111294</td><td>76</td><td>34</td><td>2996.0</td><td>682.0</td><td>none</td></tr>
+	
+</table>
+
+
+
+
 - "eKLIPse_genes.csv" summarizing cumulated deletions per mtDNA gene.
 - circos representation per input alignement. An example is shown below.
 

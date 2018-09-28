@@ -5,7 +5,7 @@
 Based on soft-clipping it provides the precise breakpoint positions and the cumulated percentage of mtDNA rearrangements at a given gene location with a high detection sensitivity.<br/>
 Both single and paired-end (mtDNA, WES, WGS) data are accepted.<br/>
 eKLIPse requires two types of input, the BAM or SAM alignment files (with header) and the corresponding mitochondrial genome (GenBank format).<br/>
-<b>Alignment must contains soft-clipping informations (see your aligner options).</b><br/>
+<b>Alignment must contains soft-clipping information (see your aligner options).</b><br/>
 eKLIPSE is available either as a script to be integrated in a pipeline, or as user friendly graphical interface.<br/>
 <span style="color:red">Like others CNV tools, eKLIPse performance will depend on your sequencing and mapping steps.</span><br/>
 
@@ -32,24 +32,24 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 ##### Start
 ![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_home.png){ width=30% }<br/>
 To start analysis, simply click "START".<br/>
-(you can change application colors by clicking on bottom right colors)<br/>
+(you can change the colors by clicking on the bottom right colors)<br/>
 ##### Launch Analysis
 ![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_select.png)<br/>
-1 - To select your alignment files, click "ADD". If required you can change alignments title by selecting correspunding cell.<br/>
+1 - To select your alignment files, click "ADD". If required you can change alignment title by selecting corresponding cell.<br/>
 2 - Select your reference genome. If you choose "Other", browse to your own Genbank file by clicking on the folder icon.<br/>
 3 - To change "results directory", click on the folder icon.<br/>
-4 - To modify "Advanced parameters" click on the expand icon. Please refers to "Parameters" section for further informations.<br/>
+4 - To modify "Advanced parameters" click on the expand icon. Please refers to "Parameters" section for further information.<br/>
 5 - Launch analysis by clicking "START"<br/>
 ##### Analysis in progress
 ![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_waiting.png)<br/>
 eKLIPse analysis detailed progress can be followed on this window.<br/>
 ##### Results
 ![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_results.png)<br/>
-Once the analysis is complete, the program automatically opens the results folder.
+Once the analysis is complete, the program automatically opens the result folder.
 ##
 
 #### Testing
-Two reduced alignments files are provided with the archive file.<br/>
+Two reduced alignment files are provided with the archive file.<br/>
 Click "TEST" on the "Launch Analysis" windows before clicking "START".
 <br/><br/>
 
@@ -128,9 +128,9 @@ rCRS (NC_012920.1.gb), CRS (J01415.2.gb) and *Mus musculus* (NC_005089.1.gb) are
 ##
 
 ##### Downsampling (-downcov)
-In order to reduce execution time, a downsampling option is available.<br/>
-For singles deletions with low mutant load or multiples deletions, we advise to not downsample "-downcov 0".<br/>
-The obtained reads number must match to a sufficient mitochondrail genome coverage.
+In order to reduce the execution time, a downsampling option is available.<br/>
+For singles deletions with low mutant load or multiple deletions, we advise to not downsample "-downcov 0".<br/>
+The obtained read number should match to a sufficient mitochondrial genome coverage.
 ##
 
 ##### Sequencing & Alignment (-minq / -minlen)
@@ -156,7 +156,7 @@ According to your sequencing depth, quality and required stringency, you could m
 Increasing the minimum number of BLAST per breakpoint increase the specificity but decrease the sensitivity (-minblast)<br/>
 By default, eKLIPse filter out deleted mtDNA with a length under 1000bp.<br/>
 But for example, if you're looking for sublimons you could reduce this length to 100bp.<br/>
-eKLIPse is based on th search of biderectionnal BLAST linking 5' breakpoint and 3' breakpoint.<br/>
+eKLIPse is based on the search of bidirectional BLAST linking 5' and 3' breakpoints.<br/>
 It is therefore not recommended to disable this filter ("-bilateral False").<br/>
 
 
@@ -166,7 +166,7 @@ It is therefore not recommended to disable this filter ("-bilateral False").<br/
 ## Outputs
 
 #### eKLIPse_deletions.csv
-File containing all predicted deletions (bkp=breakpoint).<table style='font-size:80%'><tr><td>title</td><td>5'bkp</td><td>3'bkp</td><td>Freq</td><td>Freq for</td><td>Freq rev</td><td>5' Blast</td><td>3' Blast</td><td>5' Depth</td><td>3' Depth</td><td>Repetition</td></tr><tr><td>file1</td><td>7753</td><td>14601</td><td>3,46</td><td>0,38</td><td>6,55</td><td>2</td><td>23</td><td>1393</td><td>412</td><td>7754-GA-7755 | 14601-GA-14602</td></tr><tr><td>file2</td><td>7981</td><td>14955</td><td>7,40</td><td>4,28</td><td>10,51</td><td>2408</td><td>2506</td><td>7080</td><td>2544</td><td>7982-CT-7983 | 14955-CT-14956</td></tr><tr><td>file3</td><td>460</td><td>5243</td><td>7,24</td><td>13,72</td><td>0,76</td><td>7</td><td>1</td><td>72</td><td>197</td><td>458-CT-459 | 5242-CT-5243</td></tr></table>
+File containing all predicted deletions (bkp=breakpoint).<table style='font-size:80%'><tr><td>Title</td><td>5'bkp</td><td>3'bkp</td><td>Freq</td><td>Freq for</td><td>Freq rev</td><td>5' Blast</td><td>3' Blast</td><td>5' Depth</td><td>3' Depth</td><td>Repetition</td></tr><tr><td>file1</td><td>7753</td><td>14601</td><td>3,46</td><td>0,38</td><td>6,55</td><td>2</td><td>23</td><td>1393</td><td>412</td><td>7754-GA-7755 | 14601-GA-14602</td></tr><tr><td>file2</td><td>7981</td><td>14955</td><td>7,40</td><td>4,28</td><td>10,51</td><td>2408</td><td>2506</td><td>7080</td><td>2544</td><td>7982-CT-7983 | 14955-CT-14956</td></tr><tr><td>file3</td><td>460</td><td>5243</td><td>7,24</td><td>13,72</td><td>0,76</td><td>7</td><td>1</td><td>72</td><td>197</td><td>458-CT-459 | 5242-CT-5243</td></tr></table>
 ##
 
 #### eKLIPse_genes.csv
@@ -174,7 +174,7 @@ File summarizing cumulated deletions per mtDNA gene.<table style='font-size:80%'
 ##
 
 #### circos plot
-One plot is created per input alignement. An example is shown below.<br/><br/>
+One plot is created per input alignment. An example is shown below.<br/><br/>
 ![eklipse circos legend](http://163.172.45.124/share/eKLIPse/eKLIPse_fig2.png)
 ##
 

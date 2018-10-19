@@ -37,9 +37,10 @@ def Read_alignment(titleBam,dicoInit,lstError):
                     # Count softclipped (right soft-clipping)
                     length, operation = alignment.sam_cigar_list[len(alignment.sam_cigar_list)-1]
                     if operation=="S":
-                        dicoBam[lastMappedPos]['nb_sc_reads_F']+=1
+                        # dicoBam[lastMappedPos]['nb_sc_reads_F']+=1
                         # Write to Fasta (apply filter) / not consider 'N'
                         if length-alignment.sam_seq[len(alignment.sam_seq)-length:].count("N")>=dicoInit['SCsize'] and lastMappedPos+length<=dicoInit["dicoGbk"]['refLength']:
+                            dicoBam[lastMappedPos]['nb_sc_reads_F']+=1
                             nb_mapped_part = min(dicoInit["MappedPart"],lastMappedPosRead)
                             FASTA.write(">"+str(lastMappedPos)+"_"+str(nb_mapped_part)+"_scrF_"+alignment.sam_qname+"\n"+alignment.sam_seq[len(alignment.sam_seq)-length-nb_mapped_part:]+"\n")
                             dicoBam[lastMappedPos]['nb_sc_fasta_F']+=1
@@ -52,9 +53,10 @@ def Read_alignment(titleBam,dicoInit,lstError):
                     # Count softclipped (left soft-clipping)
                     length, operation = alignment.sam_cigar_list[0]
                     if operation=="S":
-                        dicoBam[alignment.sam_pos0+1]['nb_sc_reads_R']+=1
+                        # dicoBam[alignment.sam_pos0+1]['nb_sc_reads_R']+=1
                         # Write to Fasta (apply filter)
                         if length-alignment.sam_seq[0:length].count("N")>=dicoInit['SCsize'] and alignment.sam_pos0+1-length>=0:
+                            dicoBam[alignment.sam_pos0+1]['nb_sc_reads_R']+=1
                             nb_mapped_part = min(dicoInit["MappedPart"],length)
                             FASTA.write(">"+str(alignment.sam_pos0+1)+"_"+str(nb_mapped_part)+"_scrR_"+alignment.sam_qname+"\n"+alignment.sam_seq[0:length+nb_mapped_part]+"\n")
                             dicoBam[alignment.sam_pos0+1]['nb_sc_fasta_R']+=1

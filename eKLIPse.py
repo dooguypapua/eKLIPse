@@ -52,7 +52,7 @@ if dicoInit["downCov"]!=0:
 #---------------------------------------------------------------------
 #  [ 2 ] -  COMPUTING
 #---------------------------------------------------------------------
-#*********************************************************************
+# #*********************************************************************
 #***** Read alignments *****#
 if dicoInit["boolQT"]==False: launch_threads_cli(dicoInit,"Read alignments  ","Read_alignment","ReadThread_")
 else: launch_threads_qt(dicoInit,"Read alignments  ","Read_alignment","ReadThread_","#RA")
@@ -67,7 +67,6 @@ printcolor("[OK]\n","white",boolColor)
 #***** BLAST SC sequence *****#
 if dicoInit["boolQT"]==False: launch_threads_cli(dicoInit,"Blast SC sequences ","SC_blast","ThreadSCblast_")
 else: launch_threads_qt(dicoInit,"Blast SC sequences ","SC_blast","ThreadSCblast_","#BL")
-
 
 
 #*********************************************************************

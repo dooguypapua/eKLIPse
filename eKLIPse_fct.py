@@ -60,7 +60,10 @@ def byteify(input):
 
 
 def explain_sam_flags(iFlags):
-    lstFlags = [("read paired", 0x1),("read mapped in proper pair", 0x2),("read unmapped", 0x4),("mate unmapped", 0x8),("read reverse strand", 0x10),("mate reverse strand", 0x20),("first in pair", 0x40),("second in pair", 0x80),("not primary alignment", 0x100),("read fails platform/vendor quality checks", 0x200),("read is PCR or optical duplicate", 0x400),("supplementary alignment", 0x800)]
+    lstFlags = [("read paired", 0x1),("read mapped in proper pair", 0x2),("read unmapped", 0x4),("mate unmapped", 0x8),\
+                ("read reverse strand", 0x10),("mate reverse strand", 0x20),("first in pair", 0x40),("second in pair", 0x80),\
+                ("not primary alignment", 0x100),("read fails platform/vendor quality checks", 0x200),\
+                ("read is PCR or optical duplicate", 0x400),("supplementary alignment", 0x800)]
     decodeflag = ""
     for strFlagName, iMask in lstFlags:
         if iFlags & iMask:

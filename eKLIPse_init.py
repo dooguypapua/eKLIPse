@@ -222,6 +222,10 @@ def arg_manager(argv,pathRootDir,boolColor,boolQT,spinner):
         # Copy circos conf files
         headerBool = False
         for titleBam in dicoInit["dicoBam"].keys():
+            # Test bai
+            if not os.path.isfile(dicoInit['dicoBam'][titleBam]['path']+".bai"):
+                cmd_index = dicoInit['pathSamtools']+" index "+dicoInit['dicoBam'][titleBam]['path']
+                os.system(cmd_index)
             # Retrieve header
             path_idxstats = os.path.join(dicoInit['pathTmpDir'],"idxstats.txt")
             if dicoInit['windows']==False: cmd_idxstats = dicoInit['pathSamtools']+" idxstats "+dicoInit['dicoBam'][titleBam]['path']+" 1>"+path_idxstats+" 2>/dev/null"

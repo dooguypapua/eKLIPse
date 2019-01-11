@@ -7,7 +7,9 @@ Both single and paired-end (mtDNA, WES, WGS) data are accepted.<br/>
 eKLIPse requires two types of input, the BAM or SAM alignment files (with header) and the corresponding mitochondrial genome (GenBank format).<br/>
 <b>Alignment must contains soft-clipping information (see your aligner options).</b><br/>
 eKLIPSE is available either as a script to be integrated in a pipeline, or as user friendly graphical interface.<br/>
-<span style="color:red">Like others CNV tools, eKLIPse performance will depend on your sequencing and mapping steps.</span><br/>
+```diff
++ Like others CNV tools, eKLIPse performance will depend on your sequencing and mapping steps.
+```
 
 
 ---------------------------------------
@@ -19,7 +21,9 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 - unzip ZIP file.<br/>
 - launch 'eKLIPse.exe'
 
-<span style="color:red">WARNING: Space not allowed in executable and input/output path</span>
+```diff
++ Space not allowed in executable and input/output path
+```
 ##
 
 #### Linux Installation

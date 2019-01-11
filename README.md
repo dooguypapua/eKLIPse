@@ -8,7 +8,7 @@ eKLIPse requires two types of input, the BAM or SAM alignment files (with header
 <b>Alignment must contains soft-clipping information (see your aligner options).</b><br/>
 eKLIPSE is available either as a script to be integrated in a pipeline, or as user friendly graphical interface.<br/>
 ```diff
-+ Like others CNV tools, eKLIPse performance will depend on your sequencing and mapping steps.
+- Like others CNV tools, eKLIPse performance will depend on your sequencing and mapping steps.
 ```
 
 
@@ -22,7 +22,7 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 - launch 'eKLIPse.exe'
 
 ```diff
-+ Space not allowed in executable and input/output path
+- Space not allowed in executable and input/output path
 ```
 ##
 

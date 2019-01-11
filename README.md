@@ -18,6 +18,8 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 - download lastest version 120718 [here](http://163.172.45.124/share/eKLIPse/eKLIPse_winPortable_v1-1.zip).<br/>
 - unzip ZIP file.<br/>
 - launch 'eKLIPse.exe'
+
+<span style="color:red">WARNING: Space not allowed in executable and input/output path</span>
 ##
 
 #### Linux Installation

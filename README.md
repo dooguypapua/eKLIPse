@@ -1,4 +1,4 @@
-![eklipse logo](http://163.172.45.124/share/eKLIPse/eklipseHeader.png)
+![eklipse logo](https://163.172.45.124/owncloud/index.php/s/r7bPqgNA4dO94Ip/download)
 
 
 <b>eKLIPse is a sensitive and specific tool allowing the detection and quantification of large mtDNA rearrangements.</b><br/>
@@ -17,7 +17,7 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 ## Graphical User Interface (Qt)
 
 #### Windows Deployment (portable)
-- download lastest version 120718 [here](http://163.172.45.124/share/eKLIPse/eKLIPse_winPortable_v1-1.zip).<br/>
+- download lastest version 120718 [here](https://163.172.45.124/owncloud/index.php/s/yweiq5yKR7Z1guJ/download).<br/>
 - unzip ZIP file.<br/>
 - launch 'eKLIPse.exe'
 
@@ -28,7 +28,7 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 
 #### Linux Installation
 - install required tools (see Requirements section)
-- download lastest version [here](http://163.172.45.124/share/eKLIPse/Qt_eKLIPse_unix_v1-0.zip)).<br/>
+- download lastest version [here](https://163.172.45.124/owncloud/index.php/s/utlrdhe72lqymxR/download)).<br/>
 - unzip Qt_eKLIPse_unix_v1-0.zip
 - cd Qt_eKLIPse_unix_v1-0.zip
 - chmod a+x eKLIPse
@@ -37,21 +37,21 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 
 #### Running
 ##### Start
-![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_home.png){ width=30% }<br/>
+![eklipse GUI](https://163.172.45.124/owncloud/index.php/s/AdmJrUxskRORLl2/download){ width=30% }<br/>
 To start analysis, simply click "START".<br/>
 (you can change the colors by clicking on the bottom right colors)<br/>
 ##### Launch Analysis
-![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_select.png)<br/>
+![eklipse GUI](https://163.172.45.124/owncloud/index.php/s/4JIMsAy90SrGgnT/download)<br/>
 1 - To select your alignment files, click "ADD". If required you can change alignment title by selecting corresponding cell.<br/>
 2 - Select your reference genome. If you choose "Other", browse to your own Genbank file by clicking on the folder icon.<br/>
 3 - To change "results directory", click on the folder icon.<br/>
 4 - To modify "Advanced parameters" click on the expand icon. Please refers to "Parameters" section for further information.<br/>
 5 - Launch analysis by clicking "START"<br/>
 ##### Analysis in progress
-![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_waiting.png)<br/>
+![eklipse GUI](https://163.172.45.124/owncloud/index.php/s/9XiSK4M0VtWMZvC/download)<br/>
 eKLIPse analysis detailed progress can be followed on this window.<br/>
 ##### Results
-![eklipse GUI](http://163.172.45.124/share/eKLIPse/eklipse_results.png)<br/>
+![eklipse GUI](https://163.172.45.124/owncloud/index.php/s/v6nlRI7t8OhyreI/download)<br/>
 Once the analysis is complete, the program automatically opens the result folder.
 ##
 
@@ -182,7 +182,7 @@ File summarizing cumulated deletions per mtDNA gene.<table style='font-size:80%'
 
 #### circos plot
 One plot is created per input alignment. An example is shown below.<br/><br/>
-![eklipse circos legend](http://163.172.45.124/share/eKLIPse/eKLIPse_fig2.png)
+![eklipse circos legend](https://163.172.45.124/owncloud/index.php/s/rA4Q7GYpYZ7OBWO/download)
 ##
 
 ### Contact

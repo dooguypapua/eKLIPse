@@ -25,7 +25,7 @@ def Read_alignment(titleBam,dicoInit,lstError):
         # Switch to downsampled BAM if exist
         if dicoInit['dicoBam'][titleBam]['path_downsampling']!="" : dicoInit['dicoBam'][titleBam]['path'] = dicoInit['dicoBam'][titleBam]['path_downsampling']
         for alignment in pybam.read(dicoInit['dicoBam'][titleBam]['path']):
-            if alignment.file_chromosomes[alignment.sam_refID]==dicoInit["dicoBam"][titleBam]['refName'] and alignment.sam_mapq>=dicoInit['minQ'] and not alignment.sam_cigar_string.__contains__("H"):# and not explain_sam_flags(alignment.sam_flag).__contains__("second in pair") and not explain_sam_flags(alignment.sam_flag).__contains__("supplementary"):
+            if alignment.file_chromosomes[alignment.sam_refID]==dicoInit["dicoBam"][titleBam]['refName'] and alignment.sam_mapq>=dicoInit['minQ'] and not alignment.sam_cigar_string.__contains__("H") and len(alignment.sam_seq)>=dicoInit['minlen']:# and not explain_sam_flags(alignment.sam_flag).__contains__("second in pair") and not explain_sam_flags(alignment.sam_flag).__contains__("supplementary"):
                 #***** RETRIEVE positions tuple & lastMapped infos *****#
                 positionsLstTuple,lastMappedPos,lastMappedPosRead = cigar_list_to_tuple(alignment.sam_cigar_list,alignment.sam_pos0)
                 #***** FORWARD reads *****#
@@ -36,6 +36,7 @@ def Read_alignment(titleBam,dicoInit,lstError):
                         except: pass # None case
                     # Count softclipped (right soft-clipping)
                     length, operation = alignment.sam_cigar_list[len(alignment.sam_cigar_list)-1]
+                    if alignment.sam_qname=="MG1U0:00377:02144": print 
                     if operation=="S":
                         # dicoBam[lastMappedPos]['nb_sc_reads_F']+=1
                         # Write to Fasta (apply filter) / not consider 'N'

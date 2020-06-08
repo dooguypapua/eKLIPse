@@ -1,4 +1,4 @@
-![eklipse logo](https://163.172.45.124/owncloud/index.php/s/r7bPqgNA4dO94Ip)
+![eklipse logo](https://163.172.45.124/owncloud/index.php/apps/files_sharing/ajax/publicpreview.php?x=1920&y=476&a=true&file=eklipseHeader.png&t=r7bPqgNA4dO94Ip&scalingup=0)
 
 
 <b>eKLIPse is a sensitive and specific tool allowing the detection and quantification of large mtDNA rearrangements.</b><br/>
@@ -11,13 +11,12 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 - Like others CNV tools, eKLIPse performance will depend on your sequencing and mapping steps.
 ```
 
-
 ---------------------------------------
 
 ## Graphical User Interface (Qt)
 
 #### Windows Deployment (portable)
-- download lastest version 080620 [here](https://163.172.45.124/owncloud/index.php/s/p0Skh2dJB3pYJc8).<br/>
+- download lastest version 080620 [here](https://163.172.45.124/owncloud/index.php/s/p0Skh2dJB3pYJc8/download).<br/>
 - unzip ZIP file.<br/>
 - launch 'eKLIPse.exe'
 
@@ -28,7 +27,7 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 
 #### Linux Installation
 - install required tools (see Requirements section)
-- download lastest version [here](https://163.172.45.124/owncloud/index.php/s/utlrdhe72lqymxR)).<br/>
+- download lastest version [here](https://163.172.45.124/owncloud/index.php/s/utlrdhe72lqymxR/download)).<br/>
 - unzip Qt_eKLIPse_unix_v1-0.zip
 - cd Qt_eKLIPse_unix_v1-0.zip
 - chmod a+x eKLIPse
@@ -37,21 +36,21 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 
 #### Running
 ##### Start
-![eklipse GUI](https://163.172.45.124/owncloud/index.php/s/AdmJrUxskRORLl2){ width=30% }<br/>
+![eklipse GUI](https://163.172.45.124/owncloud/index.php/apps/files_sharing/ajax/publicpreview.php?x=1920&y=476&a=true&file=eklipse_home.png&t=AdmJrUxskRORLl2&scalingup=0){ width=30% }<br/>
 To start analysis, simply click "START".<br/>
 (you can change the colors by clicking on the bottom right colors)<br/>
 ##### Launch Analysis
-![eklipse GUI](https://163.172.45.124/owncloud/index.php/s/4JIMsAy90SrGgnT)<br/>
+![eklipse GUI](https://163.172.45.124/owncloud/index.php/apps/files_sharing/ajax/publicpreview.php?x=1920&y=476&a=true&file=eklipse_select.png&t=4JIMsAy90SrGgnT&scalingup=0)<br/>
 1 - To select your alignment files, click "ADD". If required you can change alignment title by selecting corresponding cell.<br/>
 2 - Select your reference genome. If you choose "Other", browse to your own Genbank file by clicking on the folder icon.<br/>
 3 - To change "results directory", click on the folder icon.<br/>
 4 - To modify "Advanced parameters" click on the expand icon. Please refers to "Parameters" section for further information.<br/>
 5 - Launch analysis by clicking "START"<br/>
 ##### Analysis in progress
-![eklipse GUI](https://163.172.45.124/owncloud/index.php/s/9XiSK4M0VtWMZvC)<br/>
+![eklipse GUI](https://163.172.45.124/owncloud/index.php/apps/files_sharing/ajax/publicpreview.php?x=1920&y=476&a=true&file=eklipse_waiting.png&t=9XiSK4M0VtWMZvC&scalingup=0)<br/>
 eKLIPse analysis detailed progress can be followed on this window.<br/>
 ##### Results
-![eklipse GUI](https://163.172.45.124/owncloud/index.php/s/v6nlRI7t8OhyreI)<br/>
+![eklipse GUI](https://163.172.45.124/owncloud/index.php/apps/files_sharing/ajax/publicpreview.php?x=1920&y=476&a=true&file=eklipse_results.png&t=v6nlRI7t8OhyreI&scalingup=0)<br/>
 Once the analysis is complete, the program automatically opens the result folder.
 ##
 
@@ -182,7 +181,7 @@ File summarizing cumulated deletions per mtDNA gene.<table style='font-size:80%'
 
 #### circos plot
 One plot is created per input alignment. An example is shown below.<br/><br/>
-![eklipse circos legend](https://163.172.45.124/owncloud/index.php/s/rA4Q7GYpYZ7OBWO)
+![eklipse circos legend](https://163.172.45.124/owncloud/index.php/apps/files_sharing/ajax/publicpreview.php?x=1920&y=476&a=true&file=eKLIPse_fig2.png&t=rA4Q7GYpYZ7OBWO&scalingup=0)
 ##
 
 ### Contact

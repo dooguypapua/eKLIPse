@@ -16,7 +16,7 @@ eKLIPSE is available either as a script to be integrated in a pipeline, or as us
 ## Graphical User Interface (Qt)
 
 #### Windows Deployment (portable)
-- download lastest version 080620 [here](https://163.172.45.124/owncloud/index.php/s/p0Skh2dJB3pYJc8/download).<br/>
+- download lastest version 080620 [here](https://163.172.45.124/owncloud/index.php/s/7I4KFUe2iyyX9ZE/download).<br/>
 - unzip ZIP file.<br/>
 - launch 'eKLIPse.exe'
 

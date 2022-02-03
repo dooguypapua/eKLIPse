@@ -1,5 +1,5 @@
 ```diff
-eKLIPse is not maintained.
+eKLIPse is no longer maintained.
 A unpublished version (v2.1) with duplication integration
 is available in this repository.
 Duplication are defined using MitoSAlt approach (Basu et al. 2020).

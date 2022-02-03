@@ -1,6 +1,7 @@
 ```diff
 eKLIPse is not maintained.
-A unpublished version (v2.1) with duplication integration is available [here](https://sd-97659.dedibox.fr/owncloud/index.php/s/c9pn0yEh2x5PjoO/download).
+A unpublished version (v2.1) with duplication integration
+is available in this repository.
 Duplication are defined using MitoSAlt approach (Basu et al. 2020).
 Outputs was also improved.
 ```
